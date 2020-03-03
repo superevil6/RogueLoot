@@ -19,6 +19,7 @@ namespace Enums{
         Legendary
     }
     public enum Effect{
+        Nothing,
         Burning,
         Freezing,
         Shocking,

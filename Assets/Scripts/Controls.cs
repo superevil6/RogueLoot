@@ -24,15 +24,16 @@ public class Controls : MonoBehaviour
             if((Input.GetAxisRaw("HorizontalRight") == 1 || Input.GetAxisRaw("HorizontalRight") == -1)
             || (Input.GetAxisRaw("VerticalRight") == 1 || Input.GetAxisRaw("VerticalRight") == -1)){
                 Vector2 shotDirection = new Vector2(
-                    Input.GetAxisRaw("HorizontalRight") * Player.Weapon.Attack.Distance,
-                    Input.GetAxisRaw("VerticalRight") * Player.Weapon.Attack.Distance
+                    Input.GetAxisRaw("HorizontalRight"),// * Player.Weapon.Attack.Distance,
+                    Input.GetAxisRaw("VerticalRight")// * Player.Weapon.Attack.Distance
                 );
                 int bulletsToShoot = Player.Weapon.Attack.Shots;
                 foreach(GameObject go in Player.Bullets.PooledItems){
                     if(!go.activeInHierarchy && bulletsToShoot > 0){
                         go.transform.position = transform.position;
                         go.GetComponent<Bullet>().Direction = 
-                            new Vector2(shotDirection.x + RollAccuracy(Player.Weapon.Attack.Accuracy), shotDirection.y + RollAccuracy(Player.Weapon.Attack.Accuracy));
+                            new Vector2((shotDirection.x * Player.Weapon.Attack.Distance) + RollAccuracy(Player.Weapon.Attack.Accuracy) + transform.position.x, 
+                            (shotDirection.y * Player.Weapon.Attack.Distance) + RollAccuracy(Player.Weapon.Attack.Accuracy) + transform.position.y);
                         go.GetComponent<Bullet>().Attack = Player.Weapon.Attack;
                         go.SetActive(true);
                         bulletsToShoot -= 1;
@@ -42,11 +43,10 @@ public class Controls : MonoBehaviour
             }
         }
         else{
-            print(TimeBetweenAttacks);
             TimeBetweenAttacks -= Time.deltaTime;
         }
     }
     private float RollAccuracy(float accuracy){
-        return Random.Range(0, accuracy);
+        return Random.Range(-accuracy, accuracy);
     }
 }

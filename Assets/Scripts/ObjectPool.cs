@@ -12,6 +12,12 @@ public class ObjectPool : MonoBehaviour
             GameObject obj = (GameObject)Instantiate(ItemToPool);
             obj.transform.SetParent(ParentTransform);
             obj.SetActive(false);
+            if(transform.tag == "Player"){
+                obj.transform.tag = "PlayerBullet";
+            }
+            if(transform.tag == "Enemy"){
+                obj.transform.tag = "EnemyBullet";
+            }
             PooledItems.Add(obj);
         }
     }

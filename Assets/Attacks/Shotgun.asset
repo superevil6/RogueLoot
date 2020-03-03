@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d146d1101d030ee41812f3c5e39b79c6, type: 3}
-  m_Name: TestAttack
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
-  BaseDamage: 0
-  AttackSpeed: 0
-  Distance: 0
-  MovementSpeed: 0
+  BaseDamage: 10
+  AttackSpeed: 0.3
+  Distance: 2
+  ShotSpeed: 5
+  Shots: 7
+  Accuracy: 0.4
+  Size: 0.5
   Effect: 0

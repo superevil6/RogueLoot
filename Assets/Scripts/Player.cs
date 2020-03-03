@@ -22,4 +22,14 @@ public class Player : Actor
     {
         
     }
+    void OnTriggerEnter2D(Collider2D other){
+        if(other.tag == "EnemyBullet"){
+            CurrentHealth -= Mathf.RoundToInt(other.transform.GetComponent<Bullet>().TotalDamage - Defense);
+            other.transform.gameObject.SetActive(false);
+            print(CurrentHealth);
+        }
+        if(other.tag == "Enemy"){
+            CurrentHealth -= Mathf.RoundToInt(other.transform.GetComponent<Actor>().Power - Defense);
+        }
+    }
 }
