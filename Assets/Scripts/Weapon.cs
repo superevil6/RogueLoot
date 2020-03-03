@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enums;
 
-[CreateAssetMenu(fileName = "Weapon", menuName = "RogueLoot/Weapon", order = 1)]
-public class Weapon : ScriptableObject
+public class Weapon
 {
     public string Name;
     public Rarity Rarity;
@@ -12,15 +11,15 @@ public class Weapon : ScriptableObject
     public Attack Attack;
     public int UpgradeSlots;
     public List<Upgrade> Upgrades = new List<Upgrade>();
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<Effect> Effects = new List<Effect>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public Weapon(string name, Rarity rarity, int value, Attack attack, int upgradeSlots){
+        Name = name;
+        Rarity = rarity;
+        Value = value;
+        Attack = attack;
+        UpgradeSlots = upgradeSlots;
+        Upgrades = new List<Upgrade>();
+        Effects = new List<Effect>();
     }
 }

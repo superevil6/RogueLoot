@@ -13,7 +13,6 @@ public class Attack : ScriptableObject
     public int Shots;
     public float Accuracy;
     public float Size;
-    public Effect Effect;
     // Start is called before the first frame update
     void Start()
     {

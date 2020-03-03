@@ -1,0 +1,21 @@
+{ "EffectList" : [
+    {
+        "Name" : "Strength",
+        "EquipmentType" : "Weapon",
+        "LowerPowerBonus" : "1",
+        "UpperPowerBonus" : "4"
+    },
+    {
+        "Name" : "Luck",
+        "EquipmentType" : "Accessory",
+        "LowerLuckBonus" : "3",
+        "UpperLuckBonus" : "4"
+    },
+    {
+        "Name" : "Protection",
+        "EquipmentType" : "Armor",
+        "LowerDefenseBonus" : "1",
+        "UpperDefenseBonus" : "3"
+    }
+]}
+

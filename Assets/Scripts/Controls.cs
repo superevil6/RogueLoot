@@ -11,7 +11,6 @@ public class Controls : MonoBehaviour
     void Start()
     {
         TimeBetweenAttacks = Player.Weapon.Attack.AttackSpeed;
-        print(TimeBetweenAttacks);
     }
 
     // Update is called once per frame

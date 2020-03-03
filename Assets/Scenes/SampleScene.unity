@@ -293,6 +293,8 @@ GameObject:
   - component: {fileID: 1035039333}
   - component: {fileID: 1035039332}
   - component: {fileID: 1035039331}
+  - component: {fileID: 1035039335}
+  - component: {fileID: 1035039336}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -381,6 +383,72 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1035039335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035039330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd22862381570d4cb3629db319aa721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectManager:
+    Name: 
+    EquipmentType: 
+    Rarity: 
+    HealthBonus: 0
+    LowerHealthBonus: 0
+    UpperHealthBonus: 0
+    ShieldBonus: 0
+    LowerShieldBonus: 0
+    UpperShieldBonus: 0
+    PowerBonus: 0
+    LowerPowerBonus: 0
+    UpperPowerBonus: 0
+    DefenseBonus: 0
+    LowerDefenseBonus: 0
+    UpperDefenseBonus: 0
+    LuckBonus: 0
+    LowerLuckBonus: 0
+    UpperLuckBonus: 0
+  Effects:
+    EffectList: []
+  WeaponEffects: []
+  ArmorEffects: []
+  AccessoryEffects: []
+--- !u!114 &1035039336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035039330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 696961960676acc42879abb6780dd603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EG: {fileID: 1035039335}
+  Player: {fileID: 1818174815}
+  Attacks:
+  - {fileID: 11400000, guid: 2fd4463f6126b074fac327d4bf1fb7be, type: 2}
+  - {fileID: 11400000, guid: bf88d42ee3ef3724faf002bcb42d8b36, type: 2}
+  - {fileID: 11400000, guid: 094e07dfb55986341a90988e70d03cc1, type: 2}
+--- !u!114 &1818174815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4870118506303755098, guid: 3851b4585a9f8aa48af46d3922f05236,
+    type: 3}
+  m_PrefabInstance: {fileID: 4870118505924779586}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e0819e092f08e4e96164ad94fec5a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1897600712 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3392378262273291646, guid: ff256ddd5a56b2244966f024b0023cae,
@@ -684,5 +752,10 @@ PrefabInstance:
       propertyPath: SR
       value: 
       objectReference: {fileID: 435768603}
+    - target: {fileID: 4870118506303755098, guid: 3851b4585a9f8aa48af46d3922f05236,
+        type: 3}
+      propertyPath: Luck
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3851b4585a9f8aa48af46d3922f05236, type: 3}
