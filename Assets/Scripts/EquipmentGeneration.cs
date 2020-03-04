@@ -17,6 +17,10 @@ public class EquipmentGeneration : MonoBehaviour
         Armor anArmor = GenerateArmor();
         Player.Armor = anArmor;
         Player.AddStatsFromEquipment(EquipmentType.Armor);
+        Player.Inventory.Add(aWeapon);
+        Player.Inventory.Add(GenerateWeapon());
+        Player.Inventory.Add(GenerateArmor());
+        Player.Inventory.Add(anArmor);
         print(JsonUtility.ToJson(anArmor));
         // print(JsonUtility.ToJson(aWeapon));
     }
@@ -25,7 +29,7 @@ public class EquipmentGeneration : MonoBehaviour
     #region ItemCreation
         public Weapon GenerateWeapon(){
             Rarity rarity = GenerateRarity(Player.Luck);
-            Weapon newWeapon = new Weapon("testGun", rarity, 100, FindAttack(Attacks), 0);
+            Weapon newWeapon = new Weapon("testGun", EquipmentType.Weapon, rarity, 100, FindAttack(Attacks), 0);
             int effectsToAdd = 0;
             switch(newWeapon.Rarity){
                 case Rarity.Legendary:
@@ -44,14 +48,17 @@ public class EquipmentGeneration : MonoBehaviour
             Effect newEffect;
             for(int i = effectsToAdd; i > 0; i--){
                 newEffect = EG.GenerateEffect(EquipmentType.Weapon);
+                newWeapon.Effects.Add(newEffect);
+                newWeapon.Description += newEffect.Description + " ";
                 AddStatFromEffectToWeapon(newEffect, newWeapon);
             }
+            newWeapon.Name = newWeapon.Attack.AttackName + " of " + newWeapon.Effects[0].Name;
             return newWeapon;
         }
 
     public Armor GenerateArmor(){
         Rarity rarity = GenerateRarity(Player.Luck);
-        Armor newArmor = new Armor("testArmor", rarity, 100, 10, 1, 0,  0);
+        Armor newArmor = new Armor("testArmor", EquipmentType.Armor, rarity, 100, 10, 1, 0,  0);
         int effectsToAdd = 0;
         switch(newArmor.Rarity){
             case Rarity.Legendary:
@@ -70,7 +77,8 @@ public class EquipmentGeneration : MonoBehaviour
         Effect newEffect;
         for(int i = effectsToAdd; i > 0; i--){
             newEffect = EG.GenerateEffect(EquipmentType.Armor);
-            print(JsonUtility.ToJson(newEffect));
+            newArmor.Effects.Add(newEffect);
+            newArmor.Description += newEffect.Description + " ";
             AddStatFromEffectToArmor(newEffect, newArmor);
         }
         return newArmor;
@@ -103,11 +111,15 @@ public class EquipmentGeneration : MonoBehaviour
     #region AddEffectStats
         public void AddStatFromEffectToWeapon(Effect effect, Weapon weapon){
             weapon.Attack.BaseDamage += effect.PowerBonus;
+            weapon.Attack.AttackSpeed += effect.AttackSpeedBonus;
+            weapon.Attack.Shots += effect.BulletCountBonus;
+            weapon.Attack.Size += effect.BulletSizeBonus;
         }
         public void AddStatFromEffectToArmor(Effect effect, Armor armor){
             armor.HealthBonus += effect.HealthBonus;
             armor.ShieldBonus += effect.ShieldBonus;
             armor.DefenseBonus += effect.DefenseBonus;
+            armor.Speed += effect.PlayerSpeedBonus;
         }
     #endregion
 }

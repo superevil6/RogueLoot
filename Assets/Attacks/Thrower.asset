@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d146d1101d030ee41812f3c5e39b79c6, type: 3}
-  m_Name: Pistol
+  m_Name: Thrower
   m_EditorClassIdentifier: 
-  AttackName: Pistol
-  BaseDamage: 10
-  AttackSpeed: 0.5
-  Distance: 15
-  ShotSpeed: 8
-  Shots: 1
-  Accuracy: 0.2
-  Size: 1
+  AttackName: Thrower
+  BaseDamage: 3
+  AttackSpeed: 0.1
+  Distance: 0.75
+  ShotSpeed: 3
+  Shots: 3
+  Accuracy: 1
+  Size: 1.15

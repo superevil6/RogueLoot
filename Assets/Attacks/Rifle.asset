@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d146d1101d030ee41812f3c5e39b79c6, type: 3}
-  m_Name: Pistol
+  m_Name: Rifle
   m_EditorClassIdentifier: 
-  AttackName: Pistol
-  BaseDamage: 10
-  AttackSpeed: 0.5
-  Distance: 15
-  ShotSpeed: 8
+  AttackName: Rifle
+  BaseDamage: 20
+  AttackSpeed: 0.75
+  Distance: 30
+  ShotSpeed: 12
   Shots: 1
-  Accuracy: 0.2
-  Size: 1
+  Accuracy: 0.01
+  Size: 1.25

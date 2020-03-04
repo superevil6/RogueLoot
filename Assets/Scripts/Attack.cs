@@ -6,6 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Attack", menuName = "RogueLoot/Attack", order = 0)]
 public class Attack : ScriptableObject
 {
+    public string AttackName;
     public int BaseDamage;
     public float AttackSpeed;
     public float Distance;

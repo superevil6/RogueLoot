@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d146d1101d030ee41812f3c5e39b79c6, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  BaseDamage: 10
+  AttackName: Shotgun
+  BaseDamage: 3
   AttackSpeed: 0.3
   Distance: 2
   ShotSpeed: 5
   Shots: 7
   Accuracy: 0.4
   Size: 0.5
-  Effect: 0

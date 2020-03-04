@@ -61,6 +61,22 @@ public class EffectGeneration : MonoBehaviour
     public Effect CheckForWeaponEffects(Effect effect){
         if(effect.LowerPowerBonus != 0){
             effect.PowerBonus = SetRandomValues(effect.LowerPowerBonus, effect.UpperPowerBonus);
+            effect.Description = "Attack +" + effect.PowerBonus + " ";
+        }
+        if(effect.LowerBulletSizeBonus != 0){
+            effect.BulletSizeBonus = SetRandomValues(effect.LowerBulletSizeBonus, effect.UpperBulletSizeBonus);
+            effect.Description = "Bullet Size +" + effect.BulletSizeBonus + " ";
+        }
+        if(effect.LowerAttackSpeedBonus != 0){
+            effect.AttackSpeedBonus = SetRandomValues(effect.LowerAttackSpeedBonus, effect.UpperAttackSpeedBonus);
+            effect.Description = "Attack Speed +" + effect.AttackSpeedBonus + " ";
+        }
+        if(effect.LowerBulletSpeedBonus != 0){
+            effect.BulletSpeedBonus = SetRandomValues(effect.LowerBulletSpeedBonus, effect.UpperBulletSpeedBonus);
+            effect.Description = "Bullet Speed +" + effect.BulletSpeedBonus + " ";
+        }
+        if(effect.BulletCountBonus != 0){
+            effect.Description = "Bullets Fired +" + effect.BulletCountBonus + " ";
         }
         if(effect.LowerLuckBonus != 0){
             effect.LuckBonus = SetRandomValues(effect.LowerLuckBonus, effect.UpperLuckBonus);
@@ -70,13 +86,15 @@ public class EffectGeneration : MonoBehaviour
     public Effect CheckForArmorEffects(Effect effect){
         if(effect.LowerDefenseBonus != 0){
             effect.DefenseBonus = SetRandomValues(effect.LowerDefenseBonus, effect.UpperDefenseBonus);
-            print("Defense bonus for this effect is: " + effect.DefenseBonus);
         }
         if(effect.LowerHealthBonus != 0){
             effect.HealthBonus = SetRandomValues(effect.LowerHealthBonus, effect.UpperHealthBonus);
         }
         if(effect.LowerShieldBonus != 0){
             effect.ShieldBonus = SetRandomValues(effect.LowerShieldBonus, effect.UpperShieldBonus);
+        }
+        if(effect.LowerPlayerSpeedBonus != 0){
+            effect.PlayerSpeedBonus = SetRandomValues(effect.LowerPlayerSpeedBonus, effect.UpperPlayerSpeedBonus);
         }
         if(effect.LowerLuckBonus != 0){
             effect.LuckBonus = SetRandomValues(effect.LowerLuckBonus, effect.UpperLuckBonus);

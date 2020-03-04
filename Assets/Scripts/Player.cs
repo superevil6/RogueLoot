@@ -9,6 +9,7 @@ public class Player : Actor
     public Weapon Weapon;
     public Armor Armor;
     public List<Accessory> Accessories = new List<Accessory>();
+    public List<Item> Inventory = new List<Item>();
     public Sprite Sprite;
     public int Luck;
 
@@ -43,6 +44,7 @@ public class Player : Actor
                 TotalHealth += Armor.HealthBonus;
                 Defense += Armor.DefenseBonus;
                 TotalShield += Armor.ShieldBonus;
+                Speed += Armor.Speed;
             break;
         }
 
@@ -56,6 +58,7 @@ public class Player : Actor
                 TotalHealth -= Armor.HealthBonus;
                 Defense -= Armor.DefenseBonus;
                 TotalShield -= Armor.ShieldBonus;
+                Speed -= Armor.Speed;
             break;
         }
 

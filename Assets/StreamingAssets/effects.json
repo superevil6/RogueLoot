@@ -16,6 +16,29 @@
         "EquipmentType" : "Armor",
         "LowerDefenseBonus" : "1",
         "UpperDefenseBonus" : "3"
+    },
+    {
+        "Name" : "Speed",
+        "EquipmentType" : "Armor",
+        "LowerPlayerSpeedBonus" : "1",
+        "UpperPlayerSpeedBonus" : "3"
+    },
+    {
+        "Name" : "Plenty",
+        "EquipmentType" : "Weapon",
+        "BulletCount" : "90"
+    },
+    {
+        "Name" : "Fervor",
+        "EquipmentType" : "Weapon",
+        "LowerAttackSpeedBonus" : "-0.05",
+        "UpperAttackSpeedBonus" : "-0.1"
+    },
+    {
+        "Name" : "Jumbo",
+        "EquipmentType" : "Weapon",
+        "LowerBulletSizeBonus" : "0.1",
+        "UpperBulletSizeBonus" : "0.3"
     }
 ]}
 

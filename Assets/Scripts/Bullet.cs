@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     public BoxCollider2D BC;
     public Rigidbody2D RB;
     public Vector3 Direction;
-    private Vector2 StartPosition;
+    public Vector2 StartPosition;
     private float LifeTime;
     private float startTime;
     private float journeyLength;
@@ -22,11 +22,11 @@ public class Bullet : MonoBehaviour
         }
         transform.localScale = new Vector2(1 * Attack.Size, 1 * Attack.Size);
         LifeTime = Attack.Distance;
-        StartPosition = transform.position;
         startTime = Time.time;
         journeyLength = Vector2.Distance(StartPosition, Direction);
 
     }
+    
     void Update()
     {
         if(LifeTime > 0){

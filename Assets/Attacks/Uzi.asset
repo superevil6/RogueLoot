@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d146d1101d030ee41812f3c5e39b79c6, type: 3}
   m_Name: Uzi
   m_EditorClassIdentifier: 
-  BaseDamage: 3
+  AttackName: Uzi
+  BaseDamage: 2
   AttackSpeed: 0.05
   Distance: 5
   ShotSpeed: 10
   Shots: 1
   Accuracy: 1.2
-  Size: 1
-  Effect: 0
+  Size: 0.3

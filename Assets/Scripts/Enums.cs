@@ -28,5 +28,13 @@ namespace Enums{
         HealthDraining,
         Exploding
     }
+    public enum PickupType{
+        Weapon,
+        Armor,
+        Upgrade,
+        Accessory,
+        Money,
+        Health
+    }
 }
 
