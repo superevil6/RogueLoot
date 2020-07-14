@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   AttackName: Pistol
+  Sprite: {fileID: 21300000, guid: 6b47c88aea6ec554da25ce3bb7b69415, type: 3}
+  Animation: {fileID: 0}
   BaseDamage: 10
   AttackSpeed: 0.5
   Distance: 15

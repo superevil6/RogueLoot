@@ -17,6 +17,10 @@ public class Bullet : MonoBehaviour
     public int TotalDamage;
 
     void OnEnable() {
+        SpriteRenderer.sprite = Attack.Sprite;
+        float angle = Mathf.Atan2(Direction.x, Direction.y) * Mathf.Rad2Deg;
+        //float rotation = angle + Camera.main.transform.eulerAngles.y;
+        transform.eulerAngles = new Vector3(0, 0, -angle);
         if(gameObject.GetComponentInParent<Actor>() != null){
             TotalDamage = Mathf.RoundToInt(Attack.BaseDamage * transform.parent.GetComponent<Actor>().Power);    
         }

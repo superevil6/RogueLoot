@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0.49468517, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,10 +101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attack: {fileID: 11400000, guid: bf88d42ee3ef3724faf002bcb42d8b36, type: 2}
-  SpriteRenderer: {fileID: 0}
+  SpriteRenderer: {fileID: 5332637434539092942}
   BC: {fileID: -6071662587031302652}
   RB: {fileID: -5661936430173176524}
   Direction: {x: 0, y: 0, z: 0}
+  StartPosition: {x: 0, y: 0}
   TotalDamage: 0
 --- !u!61 &-6071662587031302652
 BoxCollider2D:

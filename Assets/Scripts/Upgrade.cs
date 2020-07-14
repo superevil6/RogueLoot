@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using Enums;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Upgrade", menuName = "RogueLoot/Attack", order = 0)]
-public class Upgrade : ScriptableObject
+public class Upgrade : Item
 {
-    public int Hits; //Like number of bullets
-    public int DamageBoost;
-    public int DefenseBoost;
-    public Effect Effect;
+    public int BaseDamage;
+    public float AttackSpeed;
+    public int Shots;
+    public float Size;
+    public int HealthBonus;
+    public int ShieldBonus;
+    public int DefenseBonus;
+    public float Speed;   
+    public Upgrade(string name, EquipmentType equipmentType, Rarity rarity, int value){
+        Name = name;
+        EquipmentType = equipmentType;
+        Rarity = rarity;
+        Value = value;
+        Effects = new List<Effect>();
+    }
 }

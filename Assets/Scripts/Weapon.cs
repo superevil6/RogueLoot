@@ -16,7 +16,7 @@ public class Weapon : Item
         Value = value;
         Attack = attack;
         UpgradeSlots = upgradeSlots;
-        Upgrades = new List<Upgrade>();
+        Upgrades = new List<Item>();
         Effects = new List<Effect>();
     }
 }

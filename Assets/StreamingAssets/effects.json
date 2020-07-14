@@ -1,44 +1,118 @@
 { "EffectList" : [
     {
         "Name" : "Strength",
-        "EquipmentType" : "Weapon",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Weapon Accessory",
         "LowerPowerBonus" : "1",
         "UpperPowerBonus" : "4"
     },
     {
         "Name" : "Luck",
-        "EquipmentType" : "Accessory",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Armor Accessory",
         "LowerLuckBonus" : "3",
         "UpperLuckBonus" : "4"
     },
     {
         "Name" : "Protection",
-        "EquipmentType" : "Armor",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Armor Accessory",
         "LowerDefenseBonus" : "1",
         "UpperDefenseBonus" : "3"
     },
     {
+        "Name" : "Defense",
+        "Rarity" : "Magical",
+        "EquipmentType" : "Armor Accessory",
+        "LowerDefenseBonus" : "3",
+        "UpperDefenseBonus" : "6"
+    },
+    {
+        "Name" : "Stoutness",
+        "Rarity" : "Rare",
+        "EquipmentType" : "Armor Accessory",
+        "LowerDefenseBonus" : "6",
+        "UpperDefenseBonus" : "8"
+    },
+    {
+        "Name" : "Stoicness",
+        "Rarity" : "Legendary",
+        "EquipmentType" : "Armor Accessory",
+        "LowerDefenseBonus" : "8",
+        "UpperDefenseBonus" : "12"
+    },
+    {
         "Name" : "Speed",
-        "EquipmentType" : "Armor",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Armor Accessory",
         "LowerPlayerSpeedBonus" : "1",
         "UpperPlayerSpeedBonus" : "3"
     },
     {
         "Name" : "Plenty",
-        "EquipmentType" : "Weapon",
-        "BulletCount" : "90"
+        "Rarity" : "Normal",
+        "EquipmentType" : "Weapon Accessory",
+        "BulletCountBonus" : "1"
+    },
+    {
+        "Name" : "Bountiful",
+        "Rarity" : "Magical",
+        "EquipmentType" : "Weapon Accessory",
+        "BulletCountBonus" : "2"
+    },
+    {
+        "Name" : "Splendor",
+        "Rarity" : "Rare",
+        "EquipmentType" : "Weapon Accessory",
+        "BulletCountBonus" : "3"
+    },
+    {
+        "Name" : "Bullet Storm",
+        "Rarity" : "Magical",
+        "EquipmentType" : "Weapon Accessory",
+        "BulletCountBonus" : "4"
     },
     {
         "Name" : "Fervor",
-        "EquipmentType" : "Weapon",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Weapon Accessory",
         "LowerAttackSpeedBonus" : "-0.05",
         "UpperAttackSpeedBonus" : "-0.1"
     },
     {
         "Name" : "Jumbo",
-        "EquipmentType" : "Weapon",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Weapon Accessory",
         "LowerBulletSizeBonus" : "0.1",
         "UpperBulletSizeBonus" : "0.3"
+    },
+    {
+        "Name" : "Accuracy",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Weapon Accessory",
+        "LowerAccuracyBonus" : "-0.05",
+        "UpperAccuracyBonus" : "-0.1"
+    },
+    {
+        "Name" : "Percision",
+        "Rarity" : "Magical",
+        "EquipmentType" : "Weapon Accessory",
+        "LowerAccuracyBonus" : "-0.2",
+        "UpperAccuracyBonus" : "-0.3"
+    },
+    {
+        "Name" : "Targetting",
+        "Rarity" : "Rare",
+        "EquipmentType" : "Weapon Accessory",
+        "LowerAccuracyBonus" : "-0.4",
+        "UpperAccuracyBonus" : "-0.5"
+    },
+    {
+        "Name" : "Punctiliousness",
+        "Rarity" : "Legendary",
+        "EquipmentType" : "Weapon Accessory",
+        "LowerAccuracyBonus" : "-0.6",
+        "UpperAccuracyBonus" : "-0.7"
     }
 ]}
 

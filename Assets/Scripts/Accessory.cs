@@ -1,18 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Enums;
 
-public class Accessory : MonoBehaviour
+public class Accessory : Item
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public int BaseDamage;
+    public float AttackSpeed;
+    public int Shots;
+    public float Size;
+    public int HealthBonus;
+    public int ShieldBonus;
+    public int DefenseBonus;
+    public float Speed;   
+    public float AccuracyBonus;
+    public Accessory(string name, EquipmentType equipmentType, Rarity rarity, int value, int upgradeSlots){
+        Name = name;
+        EquipmentType = equipmentType;
+        Rarity = rarity;
+        Value = value;
+        UpgradeSlots = upgradeSlots;
+        Upgrades = new List<Item>();
+        Effects = new List<Effect>();
     }
 }

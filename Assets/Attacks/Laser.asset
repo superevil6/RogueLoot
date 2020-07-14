@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Laser
   m_EditorClassIdentifier: 
   AttackName: Laser
+  Sprite: {fileID: 21300000, guid: c399dc919d45bfe4a82db9f839b642ef, type: 3}
+  Animation: {fileID: 0}
   BaseDamage: 5
   AttackSpeed: 0.25
   Distance: 15

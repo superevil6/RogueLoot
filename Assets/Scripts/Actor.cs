@@ -16,6 +16,8 @@ public class Actor : MonoBehaviour
     public float Speed; //Movement Speed
     public ObjectPool Bullets;
     public int NumberOfPooledBullets;
+    public float JumpHeight;
+    public int JumpNumber;
 
     void Start()
     {

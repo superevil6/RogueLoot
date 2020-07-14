@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Thrower
   m_EditorClassIdentifier: 
   AttackName: Thrower
+  Sprite: {fileID: 21300000, guid: cfe2dc95de3372d49a5a1bd5cc23c4b6, type: 3}
+  Animation: {fileID: 0}
   BaseDamage: 3
   AttackSpeed: 0.1
   Distance: 0.75

@@ -10,7 +10,8 @@ namespace Enums{
     public enum EquipmentType{
         Weapon,
         Armor,
-        Accessory
+        Accessory,
+        Upgrade
     }
     public enum Rarity{
         Normal,

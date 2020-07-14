@@ -12,6 +12,7 @@ public class EffectGeneration : MonoBehaviour
     public List<Effect> WeaponEffects = new List<Effect>();
     public List<Effect> ArmorEffects = new List<Effect>();
     public List<Effect> AccessoryEffects = new List<Effect>();
+    List<Effect> LevelAndTypeSpecificEffects = new List<Effect>();
 
     private string jsonPath;
     private string jsonString;
@@ -23,6 +24,7 @@ public class EffectGeneration : MonoBehaviour
         Effects = CreateFromJson(jsonString);
         WeaponEffects = ReturnEquipmentSpecificEffects("Weapon");
         ArmorEffects = ReturnEquipmentSpecificEffects("Armor");
+        AccessoryEffects = ReturnEquipmentSpecificEffects("Accessory");
     }
 
     public Effects CreateFromJson(string jsonString){
@@ -32,7 +34,7 @@ public class EffectGeneration : MonoBehaviour
     public List<Effect> ReturnEquipmentSpecificEffects(string EquipmentType){
         List<Effect> specificEffects = new List<Effect>();
         foreach(Effect effect in Effects.EffectList){
-            if(effect.EquipmentType == EquipmentType){
+            if(effect.EquipmentType.Contains(EquipmentType)){
                 specificEffects.Add(effect);
             }
         }
@@ -51,6 +53,40 @@ public class EffectGeneration : MonoBehaviour
             effectIndex = Random.Range(0, ArmorEffects.Count);
             effect = CheckForArmorEffects(ArmorEffects[effectIndex]);
             return effect;
+            case EquipmentType.Accessory:
+            effectIndex = Random.Range(0, AccessoryEffects.Count);
+            effect = CheckForAccessoryEffects(AccessoryEffects[effectIndex]);
+            return effect;
+            default:
+            return null;
+        }
+    }
+    public Effect GenerateEffect(EquipmentType ET, Rarity rarity){
+        LevelAndTypeSpecificEffects.Clear();
+        foreach(Effect effect in Effects.EffectList){
+            if(effect.EquipmentType == ET.ToString() && effect.Rarity == rarity.ToString()){
+                LevelAndTypeSpecificEffects.Add(effect);
+            }
+        }
+        Effect newEffect;
+        int effectIndex;
+        switch(ET){
+            case EquipmentType.Weapon:
+            effectIndex = Random.Range(0, WeaponEffects.Count);
+            newEffect = CheckForWeaponEffects(WeaponEffects[effectIndex]);
+            return newEffect;
+            case EquipmentType.Armor:
+            effectIndex = Random.Range(0, ArmorEffects.Count);
+            newEffect = CheckForArmorEffects(ArmorEffects[effectIndex]);
+            return newEffect;
+            case EquipmentType.Accessory:
+            effectIndex = Random.Range(0, AccessoryEffects.Count);
+            newEffect = CheckForAccessoryEffects(AccessoryEffects[effectIndex]);
+            return newEffect;
+            case EquipmentType.Upgrade:
+            effectIndex = Random.Range(0, AccessoryEffects.Count);
+            newEffect = CheckForAccessoryEffects(AccessoryEffects[effectIndex]);
+            return newEffect;
             default:
             return null;
         }
@@ -61,43 +97,98 @@ public class EffectGeneration : MonoBehaviour
     public Effect CheckForWeaponEffects(Effect effect){
         if(effect.LowerPowerBonus != 0){
             effect.PowerBonus = SetRandomValues(effect.LowerPowerBonus, effect.UpperPowerBonus);
-            effect.Description = "Attack +" + effect.PowerBonus + " ";
+            effect.Description = "Damage +" + effect.PowerBonus + "\n";
         }
         if(effect.LowerBulletSizeBonus != 0){
             effect.BulletSizeBonus = SetRandomValues(effect.LowerBulletSizeBonus, effect.UpperBulletSizeBonus);
-            effect.Description = "Bullet Size +" + effect.BulletSizeBonus + " ";
+            effect.Description = "Bullet Size +" + effect.BulletSizeBonus + "\n";
         }
         if(effect.LowerAttackSpeedBonus != 0){
             effect.AttackSpeedBonus = SetRandomValues(effect.LowerAttackSpeedBonus, effect.UpperAttackSpeedBonus);
-            effect.Description = "Attack Speed +" + effect.AttackSpeedBonus + " ";
+            effect.Description = "Attack Speed +" + effect.AttackSpeedBonus + "\n";
         }
         if(effect.LowerBulletSpeedBonus != 0){
             effect.BulletSpeedBonus = SetRandomValues(effect.LowerBulletSpeedBonus, effect.UpperBulletSpeedBonus);
-            effect.Description = "Bullet Speed +" + effect.BulletSpeedBonus + " ";
+            effect.Description = "Bullet Speed +" + effect.BulletSpeedBonus + "\n";
         }
         if(effect.BulletCountBonus != 0){
-            effect.Description = "Bullets Fired +" + effect.BulletCountBonus + " ";
+            effect.Description = "Bullets Fired +" + effect.BulletCountBonus + "\n";
+        }
+        if(effect.AccuracyBonus != 0){
+            effect.AccuracyBonus = SetRandomValues(effect.LowerAccuracyBonus, effect.UpperAccuracyBonus);
+            effect.Description = "Bullet Accuracy +" + Mathf.Round(effect.AccuracyBonus) + "%\n";
         }
         if(effect.LowerLuckBonus != 0){
             effect.LuckBonus = SetRandomValues(effect.LowerLuckBonus, effect.UpperLuckBonus);
         }
         return effect;
     }
-    public Effect CheckForArmorEffects(Effect effect){
-        if(effect.LowerDefenseBonus != 0){
-            effect.DefenseBonus = SetRandomValues(effect.LowerDefenseBonus, effect.UpperDefenseBonus);
+    public Effect CheckForAccessoryEffects(Effect effect){
+        if(effect.LowerPowerBonus != 0){
+            effect.PowerBonus = SetRandomValues(effect.LowerPowerBonus, effect.UpperPowerBonus);
+            effect.Description = "Damage +" + effect.PowerBonus + "\n";
         }
-        if(effect.LowerHealthBonus != 0){
-            effect.HealthBonus = SetRandomValues(effect.LowerHealthBonus, effect.UpperHealthBonus);
+        if(effect.LowerBulletSizeBonus != 0){
+            effect.BulletSizeBonus = SetRandomValues(effect.LowerBulletSizeBonus, effect.UpperBulletSizeBonus);
+            effect.Description = "Bullet Size +" + Mathf.Round(effect.BulletSizeBonus) + "&\n";
         }
-        if(effect.LowerShieldBonus != 0){
-            effect.ShieldBonus = SetRandomValues(effect.LowerShieldBonus, effect.UpperShieldBonus);
+        if(effect.LowerAttackSpeedBonus != 0){
+            effect.AttackSpeedBonus = SetRandomValues(effect.LowerAttackSpeedBonus, effect.UpperAttackSpeedBonus);
+            effect.Description = "Attack Speed " + Mathf.Round(effect.AttackSpeedBonus) + "%\n";
         }
-        if(effect.LowerPlayerSpeedBonus != 0){
-            effect.PlayerSpeedBonus = SetRandomValues(effect.LowerPlayerSpeedBonus, effect.UpperPlayerSpeedBonus);
+        if(effect.LowerBulletSpeedBonus != 0){
+            effect.BulletSpeedBonus = SetRandomValues(effect.LowerBulletSpeedBonus, effect.UpperBulletSpeedBonus);
+            effect.Description = "Bullet Speed +" + effect.BulletSpeedBonus + "%\n";
+        }
+        if(effect.BulletCountBonus != 0){
+            effect.Description = "Bullets Fired +" + effect.BulletCountBonus + "\n";
         }
         if(effect.LowerLuckBonus != 0){
             effect.LuckBonus = SetRandomValues(effect.LowerLuckBonus, effect.UpperLuckBonus);
+            effect.Description = "Luck +" + effect.LuckBonus + "\n";
+        }
+        if(effect.LowerDefenseBonus != 0){
+            effect.DefenseBonus = SetRandomValues(effect.LowerDefenseBonus, effect.UpperDefenseBonus);
+            effect.Description = "Defense +" + effect.DefenseBonus + "\n";
+        }
+        if(effect.LowerHealthBonus != 0){
+            effect.HealthBonus = SetRandomValues(effect.LowerHealthBonus, effect.UpperHealthBonus);
+            effect.Description = "Health +" + effect.HealthBonus + "\n";
+        }
+        if(effect.LowerShieldBonus != 0){
+            effect.ShieldBonus = SetRandomValues(effect.LowerShieldBonus, effect.UpperShieldBonus);
+            effect.Description = "Shield +" + effect.ShieldBonus + "\n";
+        }
+        if(effect.LowerPlayerSpeedBonus != 0){
+            effect.PlayerSpeedBonus = SetRandomValues(effect.LowerPlayerSpeedBonus, effect.UpperPlayerSpeedBonus);
+            effect.Description = "Movement Speed +" + effect.PlayerSpeedBonus + "\n";
+        }
+        if(effect.AccuracyBonus != 0){
+            effect.AccuracyBonus = SetRandomValues(effect.LowerAccuracyBonus, effect.UpperAccuracyBonus);
+            effect.Description = "Bullet Accuracy +" + Mathf.Round(effect.AccuracyBonus) + "%\n";
+        }
+        return effect;
+    }
+    public Effect CheckForArmorEffects(Effect effect){
+        if(effect.LowerDefenseBonus != 0){
+            effect.DefenseBonus = SetRandomValues(effect.LowerDefenseBonus, effect.UpperDefenseBonus);
+            effect.Description = "Defense +" + effect.DefenseBonus + "\n";
+        }
+        if(effect.LowerHealthBonus != 0){
+            effect.HealthBonus = SetRandomValues(effect.LowerHealthBonus, effect.UpperHealthBonus);
+            effect.Description = "Health +" + effect.HealthBonus + "\n";
+        }
+        if(effect.LowerShieldBonus != 0){
+            effect.ShieldBonus = SetRandomValues(effect.LowerShieldBonus, effect.UpperShieldBonus);
+            effect.Description = "Shield +" + effect.ShieldBonus + "\n";
+        }
+        if(effect.LowerPlayerSpeedBonus != 0){
+            effect.PlayerSpeedBonus = SetRandomValues(effect.LowerPlayerSpeedBonus, effect.UpperPlayerSpeedBonus);
+            effect.Description = "Movement Speed +" + effect.PlayerSpeedBonus + "\n";
+        }
+        if(effect.LowerLuckBonus != 0){
+            effect.LuckBonus = SetRandomValues(effect.LowerLuckBonus, effect.UpperLuckBonus);
+            effect.Description = "Luck +" + effect.LuckBonus + "\n";
         }
         return effect;
     }

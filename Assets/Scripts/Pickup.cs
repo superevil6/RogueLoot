@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Enums;
 
 public class Pickup : MonoBehaviour
@@ -9,7 +10,9 @@ public class Pickup : MonoBehaviour
     public BoxCollider2D BC;
     public Rigidbody2D RB;
     public EquipmentGeneration EG;
+    public SpriteRenderer SR;
     public Item Item;
+    public GameObject ItemPanel;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +23,17 @@ public class Pickup : MonoBehaviour
         PickupType == PickupType.Armor ||
         PickupType == PickupType.Accessory){
             Item = GenerateItem(PickupType);
+            SR.color = GetRarityColor(Item.Rarity);
         }
         if(PickupType == PickupType.Money){
+            SR.color = Color.green;
             //Generate Money
         }
         if(PickupType == PickupType.Health){
+            SR.color = Color.red;
             //Generate Health
         }
-
+        
     }
 
     // Update is called once per frame
@@ -35,23 +41,47 @@ public class Pickup : MonoBehaviour
     {
         
     }
-    void OnTriggerEnter2D(Collider2D other){
+    void OnTriggerStay2D(Collider2D other){
         if(other.tag == "Player"){
             if(PickupType == PickupType.Upgrade || 
             PickupType == PickupType.Weapon ||
             PickupType == PickupType.Armor ||
             PickupType == PickupType.Accessory){
-                other.gameObject.GetComponent<Player>().Inventory.Add(Item);
-                print(JsonUtility.ToJson(Item));
+                ItemPanel.SetActive(true);
+                if(Input.GetButtonDown("Confirm")){
+                    // if(PickupType == PickupType.Upgrade || 
+                    // PickupType == PickupType.Weapon ||
+                    // PickupType == PickupType.Armor ||
+                    // PickupType == PickupType.Accessory){
+                    //     other.gameObject.GetComponent<Player>().Inventory.Add(Item);
+                    // }
+                    if(PickupType == PickupType.Upgrade){
+                        if(Item.UpgradeType == EquipmentType.Weapon){
+                            other.gameObject.GetComponent<Player>().Weapons[other.gameObject.GetComponent<Player>().CurrentWeapon].Upgrades.Add(Item);
+                        }
+                    }
+                    if(PickupType == PickupType.Money){
+                        //Give Money
+                    }
+                    if(PickupType == PickupType.Health){
+                        //Give Health
+                    }
+                    gameObject.SetActive(false);
+                }
             }
             if(PickupType == PickupType.Money){
-                //Give Money
+                gameObject.SetActive(false);
+                //Generate Money
             }
             if(PickupType == PickupType.Health){
-                //Give Health
+                gameObject.SetActive(false);
+                //Restore Health
             }
-            gameObject.SetActive(false);
+
         }
+    }
+    void OnTriggerExit2D(Collider2D other) {
+        ItemPanel.SetActive(false);
     }
     public PickupType SelectPickupType(){
         int typeRNG = Random.Range(0, 100);
@@ -86,13 +116,27 @@ public class Pickup : MonoBehaviour
             return EG.GenerateWeapon();
             case PickupType.Armor:
             return EG.GenerateArmor();
-            // case PickupType.Accessory:
-            // return EG.GenerateAccessory();
-            // case PickupType.Upgrade:
-            // return EG.GenerateUpgrade();
+            case PickupType.Accessory:
+            return EG.GenerateAccessory();
+            case PickupType.Upgrade:
+            return EG.GenerateUpgrade();
             // case PickupType.Money:
             // return 
         }
         return null;
+    }
+    public Color GetRarityColor(Rarity rarity){
+        switch(rarity){
+            case Rarity.Legendary:
+            return new Color32(255, 128, 0, 255);
+            case Rarity.Rare:
+            return Color.yellow;
+            case Rarity.Magical:
+            return Color.blue;
+            case Rarity.Normal:
+            return Color.white;
+            default:
+            return Color.gray;
+        }
     }
 }

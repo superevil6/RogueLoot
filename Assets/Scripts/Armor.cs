@@ -19,7 +19,7 @@ public class Armor : Item
         DefenseBonus = defenseBonus;
         ShieldBonus = shieldBonus;
         UpgradeSlots = upgradeSlots;
-        Upgrades = new List<Upgrade>();
+        Upgrades = new List<Item>();
         Effects = new List<Effect>();
     }
 }

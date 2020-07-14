@@ -9,27 +9,35 @@ public class EquipmentGeneration : MonoBehaviour
     public EffectGeneration EG;
     public Player Player;
     public List<Attack> Attacks = new List<Attack>();
-    // Start is called before the first frame update
     void Start()
     {
-        Weapon aWeapon = GenerateWeapon();
-        Player.Weapon = aWeapon;
+        Player.Weapons.Add(GenerateWeapon());
+        Player.Weapons.Add(GenerateWeapon());
+        Player.Weapons.Add(GenerateWeapon());
+        Player.Weapons.Add(GenerateWeapon());
+
+        // Player.Weapons[Player.CurrentWeapon] = aWeapon;
         Armor anArmor = GenerateArmor();
         Player.Armor = anArmor;
-        Player.AddStatsFromEquipment(EquipmentType.Armor);
-        Player.Inventory.Add(aWeapon);
+        Accessory acc = GenerateAccessory();
+        Player.Accessory = acc;
+        Upgrade upg = GenerateUpgrade();
+        // aWeapon.Upgrades.Add(upg);
+        // Player.Inventory.Add(aWeapon);
+        Player.Inventory.Add(acc);
+        Player.Inventory.Add(GenerateUpgrade());
+        Player.Inventory.Add(GenerateUpgrade());
+        Player.Inventory.Add(GenerateWeapon());
         Player.Inventory.Add(GenerateWeapon());
         Player.Inventory.Add(GenerateArmor());
+        Player.Inventory.Add(GenerateAccessory());
         Player.Inventory.Add(anArmor);
-        print(JsonUtility.ToJson(anArmor));
-        // print(JsonUtility.ToJson(aWeapon));
     }
-    // Update is called once per frame
 
     #region ItemCreation
         public Weapon GenerateWeapon(){
             Rarity rarity = GenerateRarity(Player.Luck);
-            Weapon newWeapon = new Weapon("testGun", EquipmentType.Weapon, rarity, 100, FindAttack(Attacks), 0);
+            Weapon newWeapon = new Weapon("testGun", EquipmentType.Weapon, rarity, 100, FindAttack(Attacks), 2);
             int effectsToAdd = 0;
             switch(newWeapon.Rarity){
                 case Rarity.Legendary:
@@ -58,7 +66,7 @@ public class EquipmentGeneration : MonoBehaviour
 
     public Armor GenerateArmor(){
         Rarity rarity = GenerateRarity(Player.Luck);
-        Armor newArmor = new Armor("testArmor", EquipmentType.Armor, rarity, 100, 10, 1, 0,  0);
+        Armor newArmor = new Armor("testArmor", EquipmentType.Armor, rarity, 100, 10, 1, 0,  2);
         int effectsToAdd = 0;
         switch(newArmor.Rarity){
             case Rarity.Legendary:
@@ -81,7 +89,52 @@ public class EquipmentGeneration : MonoBehaviour
             newArmor.Description += newEffect.Description + " ";
             AddStatFromEffectToArmor(newEffect, newArmor);
         }
+        newArmor.Name = "Armor" + " of " + newArmor.Effects[0].Name;
+
         return newArmor;
+    }
+    public Accessory GenerateAccessory(){
+        Rarity rarity = GenerateRarity(Player.Luck);
+        Accessory newAccessory = new Accessory("testAccessory", EquipmentType.Accessory, rarity, 100, 1);
+        int effectsToAdd = 0;
+        switch(newAccessory.Rarity){
+            case Rarity.Legendary:
+            effectsToAdd = 4;
+            break;
+            case Rarity.Rare:
+            effectsToAdd = 3;
+            break;
+            case Rarity.Magical:
+            effectsToAdd = 2;
+            break;
+            case Rarity.Normal:
+            effectsToAdd = 1;
+            break;
+        }
+        Effect newEffect;
+        for(int i = effectsToAdd; i > 0; i--){
+            newEffect = EG.GenerateEffect(EquipmentType.Accessory);
+            newAccessory.Effects.Add(newEffect);
+            newAccessory.Description += newEffect.Description + " ";
+            AddStatFromEffectToAccessory(newEffect, newAccessory);
+        }
+        newAccessory.Name = "Ring" + " of " + newAccessory.Effects[0].Name;
+
+        return newAccessory;
+    }
+    public Upgrade GenerateUpgrade(){
+        Rarity rarity = GenerateRarity(Player.Luck);
+        Upgrade newUpgrade = new Upgrade("testUpgrade", EquipmentType.Upgrade, rarity, 100);
+        Effect newEffect;
+        newEffect = EG.GenerateEffect(EquipmentType.Upgrade, newUpgrade.Rarity);
+        print(newEffect + "new effect");
+        newUpgrade.Effects.Add(newEffect);
+        //temporarily for testing
+        newUpgrade.UpgradeType = EquipmentType.Weapon;
+        // newUpgrade.Description += newEffect.Description + " ";
+        AddStatFromEffectToUpgrade(newEffect, newUpgrade);
+        newUpgrade.Name = newEffect.Name + " Module";
+        return newUpgrade;
     }
     #endregion
 
@@ -109,17 +162,40 @@ public class EquipmentGeneration : MonoBehaviour
         }
     #endregion
     #region AddEffectStats
-        public void AddStatFromEffectToWeapon(Effect effect, Weapon weapon){
-            weapon.Attack.BaseDamage += effect.PowerBonus;
-            weapon.Attack.AttackSpeed += effect.AttackSpeedBonus;
-            weapon.Attack.Shots += effect.BulletCountBonus;
-            weapon.Attack.Size += effect.BulletSizeBonus;
-        }
-        public void AddStatFromEffectToArmor(Effect effect, Armor armor){
-            armor.HealthBonus += effect.HealthBonus;
-            armor.ShieldBonus += effect.ShieldBonus;
-            armor.DefenseBonus += effect.DefenseBonus;
-            armor.Speed += effect.PlayerSpeedBonus;
-        }
+    public void AddStatFromEffectToWeapon(Effect effect, Weapon weapon){
+        weapon.Attack.BaseDamage += effect.PowerBonus;
+        weapon.Attack.AttackSpeed += effect.AttackSpeedBonus;
+        weapon.Attack.Shots += effect.BulletCountBonus;
+        weapon.Attack.Size += effect.BulletSizeBonus;
+        weapon.Attack.Accuracy += effect.AccuracyBonus;
+    }
+    public void AddStatFromEffectToArmor(Effect effect, Armor armor){
+        armor.HealthBonus += effect.HealthBonus;
+        armor.ShieldBonus += effect.ShieldBonus;
+        armor.DefenseBonus += effect.DefenseBonus;
+        armor.Speed += effect.PlayerSpeedBonus;
+    }
+    public void AddStatFromEffectToAccessory(Effect effect, Accessory accessory){
+        accessory.BaseDamage += effect.PowerBonus;
+        accessory.AttackSpeed += effect.AttackSpeedBonus;
+        accessory.Shots += effect.BulletCountBonus;
+        accessory.Size += effect.BulletSizeBonus;
+        accessory.HealthBonus += effect.HealthBonus;
+        accessory.ShieldBonus += effect.ShieldBonus;
+        accessory.DefenseBonus += effect.DefenseBonus;
+        accessory.Speed += effect.PlayerSpeedBonus;
+        accessory.AccuracyBonus += effect.AccuracyBonus;
+
+    }
+    public void AddStatFromEffectToUpgrade(Effect effect, Upgrade upgrade){
+        upgrade.BaseDamage += effect.PowerBonus;
+        upgrade.AttackSpeed += effect.AttackSpeedBonus;
+        upgrade.Shots += effect.BulletCountBonus;
+        upgrade.Size += effect.BulletSizeBonus;
+        upgrade.HealthBonus += effect.HealthBonus;
+        upgrade.ShieldBonus += effect.ShieldBonus;
+        upgrade.DefenseBonus += effect.DefenseBonus;
+        upgrade.Speed += effect.PlayerSpeedBonus;
+    }
     #endregion
 }

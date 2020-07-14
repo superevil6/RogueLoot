@@ -100,9 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1849c7d06033b074fa2fcf8033bf2710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SR: {fileID: 3392378262273291644}
   BC: {fileID: 3392378262273291647}
   RB: {fileID: 3392378262273291645}
-  TotalHealth: 300
+  TotalHealth: 100
   CurrentHealth: 100
   TotalShield: 0
   CurrentShield: 0
@@ -111,7 +112,8 @@ MonoBehaviour:
   Speed: 2
   Bullets: {fileID: 0}
   NumberOfPooledBullets: 5
-  ParentTag: 
+  JumpHeight: 0
+  JumpNumber: 0
   Attack: {fileID: 11400000, guid: bf88d42ee3ef3724faf002bcb42d8b36, type: 2}
 --- !u!61 &3392378262273291647
 BoxCollider2D:
@@ -123,7 +125,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

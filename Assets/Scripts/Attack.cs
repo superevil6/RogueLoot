@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using Enums;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Attack", menuName = "RogueLoot/Attack", order = 0)]
 public class Attack : ScriptableObject
 {
     public string AttackName;
+    public Sprite Sprite;
+    public AnimationClip Animation;
     public int BaseDamage;
     public float AttackSpeed;
     public float Distance;

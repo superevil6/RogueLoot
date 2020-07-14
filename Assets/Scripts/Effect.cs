@@ -7,6 +7,7 @@ public class Effect
 {
     public string Name;
     public string EquipmentType;
+    public string Level;
     public string Rarity;
     public string Description;
     public int HealthBonus;
@@ -37,6 +38,9 @@ public class Effect
     public float BulletSpeedBonus;
     public float LowerBulletSpeedBonus;
     public float UpperBulletSpeedBonus;
+    public float AccuracyBonus;
+    public float LowerAccuracyBonus;
+    public float UpperAccuracyBonus;
 
     /*
     range
@@ -64,7 +68,8 @@ public class Effect
     int bulletCountBonus, 
     float bulletSizeBonus, float lowerBulletSizeBonus, float upperBulletSizeBonus,
     float attackSpeedBonus, float lowerAttackSpeedBonus, float upperAttackSpeedBonus,
-    float bulletSpeedBonus, float lowerBulletSpeedBonus, float upperBulletSpeedBonus
+    float bulletSpeedBonus, float lowerBulletSpeedBonus, float upperBulletSpeedBonus,
+    float accuracyBonus, float lowerAccuracyBonus, float upperAccuracyBonus
     ){
         Name = name;
         EquipmentType =  equipmentType;
@@ -97,6 +102,9 @@ public class Effect
         BulletSpeedBonus = bulletSpeedBonus;
         LowerBulletSpeedBonus = lowerBulletSpeedBonus;
         UpperBulletSpeedBonus = upperBulletSpeedBonus;
+        AccuracyBonus = accuracyBonus;
+        LowerAccuracyBonus = lowerAccuracyBonus;
+        UpperAccuracyBonus = upperAccuracyBonus;
     }
 }
 
