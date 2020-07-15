@@ -16,6 +16,8 @@ public class Player : Actor
     public Sprite Sprite;
     public int Luck;
     public Text EquippedWeapon;
+    public Text EquippedArmor;
+    public Text ArmorModule;
     public Text ModuleText;
     public Text MoneyText;
     public Image HealthBar;
@@ -36,6 +38,8 @@ public class Player : Actor
     {
         EquippedWeapon.text = Weapons[CurrentWeapon].Name;
         MoneyText.text = Money.ToString();
+        EquippedArmor.text = Armor.Name;
+        // ArmorModule.text = Armor.Upgrades[0].Name;
         if(Weapons[CurrentWeapon].Upgrades.Count >= 1){
             ModuleText.text = Weapons[CurrentWeapon].Upgrades[0].Name;
         }

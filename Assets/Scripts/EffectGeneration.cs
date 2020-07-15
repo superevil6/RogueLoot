@@ -121,6 +121,22 @@ public class EffectGeneration : MonoBehaviour
         if(effect.LowerLuckBonus != 0){
             effect.LuckBonus = SetRandomValues(effect.LowerLuckBonus, effect.UpperLuckBonus);
         }
+        if(effect.LowerColdDamageBonus != 0){
+            effect.ColdBonus = SetRandomValues(effect.LowerColdDamageBonus, effect.UpperColdDamageBonus);
+            effect.Description = "Chilling Damage +" + effect.ColdBonus + "\n";
+        }
+        if(effect.LowerFireDamageBonus != 0){
+            effect.FireBonus = SetRandomValues(effect.LowerFireDamageBonus, effect.UpperFireDamageBonus);
+            effect.Description = "Flaming Damage +" + effect.FireBonus + "\n";
+        }
+        if(effect.LowerElectricDamageBonus != 0){
+            effect.ElectricBonus = SetRandomValues(effect.LowerElectricDamageBonus, effect.UpperElectricDamageBonus);
+            effect.Description = "Electical Damage +" + effect.ElectricBonus + "\n";
+        }
+        if(effect.LowerPoisonDamageBonus != 0){
+            effect.PoisonBonus = SetRandomValues(effect.LowerPoisonDamageBonus, effect.UpperPoisonDamageBonus);
+            effect.Description = "Poisoning Damage +" + effect.PoisonBonus + "\n";
+        }
         return effect;
     }
     public Effect CheckForAccessoryEffects(Effect effect){

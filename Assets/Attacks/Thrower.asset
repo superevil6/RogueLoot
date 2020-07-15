@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackName: Thrower
   Sprite: {fileID: 8048705776653754338, guid: cfe2dc95de3372d49a5a1bd5cc23c4b6, type: 3}
-  RAC: {fileID: 0}
+  RAC: {fileID: 9100000, guid: 24fad9e279ff9cf40bc38336366d89b6, type: 2}
   BaseDamage: 3
   AttackSpeed: 0.1
   Distance: 0.75

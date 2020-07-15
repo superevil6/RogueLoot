@@ -41,6 +41,19 @@ public class Effect
     public float AccuracyBonus;
     public float LowerAccuracyBonus;
     public float UpperAccuracyBonus;
+    //Elemental
+    public int ColdBonus;
+    public int LowerColdDamageBonus;
+    public int UpperColdDamageBonus;
+    public int FireBonus;
+    public int LowerFireDamageBonus;
+    public int UpperFireDamageBonus;
+    public int ElectricBonus;
+    public int LowerElectricDamageBonus;
+    public int UpperElectricDamageBonus;
+    public int PoisonBonus;
+    public int LowerPoisonDamageBonus;
+    public int UpperPoisonDamageBonus;
 
     /*
     range
@@ -69,7 +82,11 @@ public class Effect
     float bulletSizeBonus, float lowerBulletSizeBonus, float upperBulletSizeBonus,
     float attackSpeedBonus, float lowerAttackSpeedBonus, float upperAttackSpeedBonus,
     float bulletSpeedBonus, float lowerBulletSpeedBonus, float upperBulletSpeedBonus,
-    float accuracyBonus, float lowerAccuracyBonus, float upperAccuracyBonus
+    float accuracyBonus, float lowerAccuracyBonus, float upperAccuracyBonus,
+    int coldBonus, int lowerColdDamageBonus, int upperColdDamageBonus, 
+    int fireBonus, int lowerFireDamageBonus, int upperFireDamageBonus, 
+    int electricBonus, int lowerElectricDamageBonus, int upperElectricDamageBonus,
+    int poisonBonus, int lowerPoisonDamageBonus, int upperPoisonDamageBonus
     ){
         Name = name;
         EquipmentType =  equipmentType;
@@ -105,6 +122,19 @@ public class Effect
         AccuracyBonus = accuracyBonus;
         LowerAccuracyBonus = lowerAccuracyBonus;
         UpperAccuracyBonus = upperAccuracyBonus;
+        //Elemental Effects
+        ColdBonus = coldBonus;
+        LowerColdDamageBonus = lowerColdDamageBonus;
+        UpperColdDamageBonus = upperColdDamageBonus;
+        FireBonus = fireBonus;
+        LowerFireDamageBonus = lowerFireDamageBonus;
+        UpperFireDamageBonus = upperFireDamageBonus;
+        ElectricBonus = electricBonus;
+        LowerElectricDamageBonus = lowerElectricDamageBonus;
+        UpperElectricDamageBonus = upperElectricDamageBonus;
+        PoisonBonus = LowerPoisonDamageBonus;
+        LowerPoisonDamageBonus = lowerPoisonDamageBonus;
+        UpperPoisonDamageBonus = upperPoisonDamageBonus;
     }
 }
 

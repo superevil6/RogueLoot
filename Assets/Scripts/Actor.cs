@@ -7,6 +7,7 @@ public class Actor : MonoBehaviour
     public SpriteRenderer SR;
     public BoxCollider2D BC;
     public Rigidbody2D RB;
+    public EffectStats EffectStats;
     public int TotalHealth;
     public int CurrentHealth;
     public int TotalShield;

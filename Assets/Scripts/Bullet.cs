@@ -19,13 +19,14 @@ public class Bullet : MonoBehaviour
     public int TotalDamage;
 
     void OnEnable() {
+        var actor = gameObject.GetComponentInParent<Actor>();
         SpriteRenderer.sprite = Attack.Sprite;
         Animator.runtimeAnimatorController = Attack.RAC;
         float angle = Mathf.Atan2(Direction.x, Direction.y) * Mathf.Rad2Deg;
         //float rotation = angle + Camera.main.transform.eulerAngles.y;
         transform.eulerAngles = new Vector3(0, 0, -angle);
-        if(gameObject.GetComponentInParent<Actor>() != null){
-            TotalDamage = Mathf.RoundToInt(Attack.BaseDamage * transform.parent.GetComponent<Actor>().Power);    
+        if(actor != null){
+            TotalDamage = Mathf.RoundToInt(Attack.BaseDamage * actor.Power);    
         }
         transform.localScale = new Vector2(1 * Attack.Size, 1 * Attack.Size);
         LifeTime = Attack.Distance;

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackName: Rocket Launcher
   Sprite: {fileID: -8536042947368034023, guid: 59477bcfbf10584459acc9473471285d, type: 3}
-  RAC: {fileID: 0}
+  RAC: {fileID: 9100000, guid: ba8ff057a9d0c214886e06348862f6f6, type: 2}
   BaseDamage: 40
   AttackSpeed: 1.15
   Distance: 20

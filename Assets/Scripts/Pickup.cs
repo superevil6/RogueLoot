@@ -50,16 +50,16 @@ public class Pickup : MonoBehaviour
             PickupType == PickupType.Accessory){
                 ItemPanel.SetActive(true);
                 if(Input.GetButtonDown("Confirm")){
-                    // if(PickupType == PickupType.Upgrade || 
-                    // PickupType == PickupType.Weapon ||
-                    // PickupType == PickupType.Armor ||
-                    // PickupType == PickupType.Accessory){
-                    //     other.gameObject.GetComponent<Player>().Inventory.Add(Item);
-                    // }
                     if(PickupType == PickupType.Weapon){
                         player.Weapons.Add((Weapon)Item);
                     }
+                    if(PickupType == PickupType.Armor){
+                        player.Armor = (Armor)Item;
+                    }
                     if(PickupType == PickupType.Upgrade){
+                        if(Item.UpgradeType == EquipmentType.Armor){
+                            player.Armor.Upgrades.Add(Item);
+                        }
                         if(Item.UpgradeType == EquipmentType.Weapon){
                             player.Weapons[player.CurrentWeapon].Upgrades.Add(Item);
                         }

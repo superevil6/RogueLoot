@@ -113,6 +113,118 @@
         "EquipmentType" : "Weapon Accessory",
         "LowerAccuracyBonus" : "-0.6",
         "UpperAccuracyBonus" : "-0.7"
+    },
+    {
+        "Name" : "Coolness",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Weapon",
+        "LowerColdDamageBonus" : "1",
+        "UpperColdDamageBonus" : "3"
+    },
+    {
+        "Name" : "Frost",
+        "Rarity" : "Magical",
+        "EquipmentType" : "Weapon",
+        "LowerColdDamageBonus" : "3",
+        "UpperColdDamageBonus" : "5"
+    },
+    {
+        "Name" : "Glaciar",
+        "Rarity" : "Rare",
+        "EquipmentType" : "Weapon",
+        "LowerColdDamageBonus" : "5",
+        "UpperColdDamageBonus" : "7"
+    },
+    {
+        "Name" : "Cocytus",
+        "Rarity" : "Legendary",
+        "EquipmentType" : "Weapon",
+        "LowerColdDamageBonus" : "7",
+        "UpperColdDamageBonus" : "10"
+    },
+    {
+        "Name" : "Ember",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Weapon",
+        "LowerFireDamageBonus" : "1",
+        "UpperFireDamageBonus" : "3"
+    },
+    {
+        "Name" : "Cinder",
+        "Rarity" : "Magical",
+        "EquipmentType" : "Weapon",
+        "LowerFireDamageBonus" : "3",
+        "UpperFireDamageBonus" : "5"
+    },
+    {
+        "Name" : "Flame",
+        "Rarity" : "Rare",
+        "EquipmentType" : "Weapon",
+        "LowerFireDamageBonus" : "5",
+        "UpperFireDamageBonus" : "7"
+    },
+    {
+        "Name" : "Inferno",
+        "Rarity" : "Legendary",
+        "EquipmentType" : "Weapon",
+        "LowerFireDamageBonus" : "7",
+        "UpperFireDamageBonus" : "10"
+    },
+    {
+        "Name" : "Jolting",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Weapon",
+        "LowerElectricDamageBonus" : "1",
+        "UpperElectricDamageBonus" : "3"
+    },
+    {
+        "Name" : "Zaps",
+        "Rarity" : "Magical",
+        "EquipmentType" : "Weapon",
+        "LowerElectricDamageBonus" : "3",
+        "UpperElectricDamageBonus" : "5"
+    },
+    {
+        "Name" : "Electrocution",
+        "Rarity" : "Rare",
+        "EquipmentType" : "Weapon",
+        "LowerElectricDamageBonus" : "5",
+        "UpperElectricDamageBonus" : "7"
+    },
+    {
+        "Name" : "Lightning",
+        "Rarity" : "Legendary",
+        "EquipmentType" : "Weapon",
+        "LowerElectricDamageBonus" : "7",
+        "UpperElectricDamageBonus" : "10"
+    },
+    {
+        "Name" : "Illness",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Weapon",
+        "LowerPoisonDamageBonus" : "1",
+        "UpperPoisonDamageBonus" : "3"
+    },
+    {
+        "Name" : "Taint",
+        "Rarity" : "Magical",
+        "EquipmentType" : "Weapon",
+        "LowerPoisonDamageBonus" : "3",
+        "UpperPoisonDamageBonus" : "5"
+    },
+    {
+        "Name" : "Poison",
+        "Rarity" : "Rare",
+        "EquipmentType" : "Weapon",
+        "LowerPoisonDamageBonus" : "5",
+        "UpperPoisonDamageBonus" : "7"
+    },
+    {
+        "Name" : "Disease",
+        "Rarity" : "Legendary",
+        "EquipmentType" : "Weapon",
+        "LowerPoisonDamageBonus" : "7",
+        "UpperPoisonDamageBonus" : "10"
     }
 ]}
 

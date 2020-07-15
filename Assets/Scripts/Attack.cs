@@ -17,6 +17,10 @@ public class Attack : ScriptableObject
     public int Shots;
     public float Accuracy;
     public float Size;
+    public int ColdDamage;
+    public int FireDamage;
+    public int ElectricDamage;
+    public int PoisonDamage;
     // Start is called before the first frame update
     void Start()
     {

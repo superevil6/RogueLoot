@@ -159,6 +159,10 @@ public class EquipmentGeneration : MonoBehaviour
         weapon.Attack.Shots += effect.BulletCountBonus;
         weapon.Attack.Size += effect.BulletSizeBonus;
         weapon.Attack.Accuracy += effect.AccuracyBonus;
+        weapon.Attack.ColdDamage += effect.ColdBonus;
+        weapon.Attack.FireDamage += effect.FireBonus;
+        weapon.Attack.ElectricDamage += effect.ElectricBonus;
+        weapon.Attack.PoisonDamage += effect.PoisonBonus;
     }
     public void AddStatFromEffectToArmor(Effect effect, Armor armor){
         armor.HealthBonus += effect.HealthBonus;
