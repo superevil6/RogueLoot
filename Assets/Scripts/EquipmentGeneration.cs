@@ -16,7 +16,6 @@ public class EquipmentGeneration : MonoBehaviour
         Player.Weapons.Add(GenerateWeapon());
         Player.Weapons.Add(GenerateWeapon());
 
-        // Player.Weapons[Player.CurrentWeapon] = aWeapon;
         Armor anArmor = GenerateArmor();
         Player.Armor = anArmor;
         Accessory acc = GenerateAccessory();
@@ -24,14 +23,6 @@ public class EquipmentGeneration : MonoBehaviour
         Upgrade upg = GenerateUpgrade();
         // aWeapon.Upgrades.Add(upg);
         // Player.Inventory.Add(aWeapon);
-        Player.Inventory.Add(acc);
-        Player.Inventory.Add(GenerateUpgrade());
-        Player.Inventory.Add(GenerateUpgrade());
-        Player.Inventory.Add(GenerateWeapon());
-        Player.Inventory.Add(GenerateWeapon());
-        Player.Inventory.Add(GenerateArmor());
-        Player.Inventory.Add(GenerateAccessory());
-        Player.Inventory.Add(anArmor);
     }
 
     #region ItemCreation

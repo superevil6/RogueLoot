@@ -11,6 +11,8 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D RB;
     public Vector3 Direction;
     public Vector2 StartPosition;
+    public Animator Animator;
+    public RuntimeAnimatorController AnimationController;
     private float LifeTime;
     private float startTime;
     private float journeyLength;
@@ -18,6 +20,7 @@ public class Bullet : MonoBehaviour
 
     void OnEnable() {
         SpriteRenderer.sprite = Attack.Sprite;
+        Animator.runtimeAnimatorController = Attack.RAC;
         float angle = Mathf.Atan2(Direction.x, Direction.y) * Mathf.Rad2Deg;
         //float rotation = angle + Camera.main.transform.eulerAngles.y;
         transform.eulerAngles = new Vector3(0, 0, -angle);
@@ -28,7 +31,6 @@ public class Bullet : MonoBehaviour
         LifeTime = Attack.Distance;
         startTime = Time.time;
         journeyLength = Vector2.Distance(StartPosition, Direction);
-
     }
     
     void Update()

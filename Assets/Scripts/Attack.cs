@@ -9,7 +9,7 @@ public class Attack : ScriptableObject
 {
     public string AttackName;
     public Sprite Sprite;
-    public AnimationClip Animation;
+    public RuntimeAnimatorController RAC;
     public int BaseDamage;
     public float AttackSpeed;
     public float Distance;

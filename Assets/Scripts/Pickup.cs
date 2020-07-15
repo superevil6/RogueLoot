@@ -43,6 +43,7 @@ public class Pickup : MonoBehaviour
     }
     void OnTriggerStay2D(Collider2D other){
         if(other.tag == "Player"){
+            var player = other.gameObject.GetComponent<Player>();
             if(PickupType == PickupType.Upgrade || 
             PickupType == PickupType.Weapon ||
             PickupType == PickupType.Armor ||
@@ -55,27 +56,30 @@ public class Pickup : MonoBehaviour
                     // PickupType == PickupType.Accessory){
                     //     other.gameObject.GetComponent<Player>().Inventory.Add(Item);
                     // }
+                    if(PickupType == PickupType.Weapon){
+                        player.Weapons.Add((Weapon)Item);
+                    }
                     if(PickupType == PickupType.Upgrade){
                         if(Item.UpgradeType == EquipmentType.Weapon){
-                            other.gameObject.GetComponent<Player>().Weapons[other.gameObject.GetComponent<Player>().CurrentWeapon].Upgrades.Add(Item);
+                            player.Weapons[player.CurrentWeapon].Upgrades.Add(Item);
                         }
-                    }
-                    if(PickupType == PickupType.Money){
-                        //Give Money
-                    }
-                    if(PickupType == PickupType.Health){
-                        //Give Health
                     }
                     gameObject.SetActive(false);
                 }
             }
             if(PickupType == PickupType.Money){
+                //Consider randomizing a value that has different sprites for quantity
+                other.gameObject.GetComponent<Player>().Money += 10;
                 gameObject.SetActive(false);
-                //Generate Money
             }
             if(PickupType == PickupType.Health){
+                if(player.CurrentHealth < player.TotalHealth){
+                    player.CurrentHealth += 10;
+                }
+                if(player.CurrentHealth + 10 > player.TotalHealth){
+                    player.CurrentHealth = player.TotalHealth;
+                }
                 gameObject.SetActive(false);
-                //Restore Health
             }
 
         }

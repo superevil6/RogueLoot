@@ -18,6 +18,9 @@ public class Controls : MonoBehaviour
     private float JumptimeCounter;
     public float JumpTime;
     private bool IsJumping;
+    private float DashTime;
+    private float TempSpeed;
+    private bool IsDashing;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,12 +77,12 @@ public class Controls : MonoBehaviour
             JumpsRemaining = Player.JumpNumber;
         }
 
-        if(Input.GetButtonDown("Menu")){
-            MenuOpen = !MenuOpen;
-            RB.velocity = new Vector2(0, 0); //So the player doesn't keep moving when the menu is open.
-            MenuPanel.SetActive(!MenuPanel.activeInHierarchy);
-            MenuPanel.transform.position = Player.transform.position;
-        }
+        // if(Input.GetButtonDown("Menu")){
+        //     MenuOpen = !MenuOpen;
+        //     RB.velocity = new Vector2(0, 0); //So the player doesn't keep moving when the menu is open.
+        //     MenuPanel.SetActive(!MenuPanel.activeInHierarchy);
+        //     MenuPanel.transform.position = Player.transform.position;
+        // }
         if(Input.GetButtonDown("L button") && Grounded){
             IsJumping = true;
             JumptimeCounter = JumpTime;
@@ -98,14 +101,20 @@ public class Controls : MonoBehaviour
         if(Input.GetButtonUp("L button")){
             IsJumping = false;
         }
-        if(Input.GetButtonDown("R button")){
-            if(Input.GetAxisRaw("HorizontalLeft") > 0){
-                print("right");
-                RB.AddForce(-Vector2.left * 2500);
-            }
-            if(Input.GetAxisRaw("HorizontalLeft") < 0){
-                print("left");
-                RB.AddForce(Vector2.left * 2500);
+        if(Input.GetButtonDown("R button") && !IsJumping){
+            // if(Input.GetAxisRaw("HorizontalLeft") > 0){
+            //     RB.AddForce(-Vector2.left * 5000);
+            // }
+            // if(Input.GetAxisRaw("HorizontalLeft") < 0){
+            //     RB.AddForce(Vector2.left * 5000);
+            // }
+            // MovementInput = Input.GetAxisRaw("HorizontalLeft");
+            // RB.velocity = new Vector2(MovementInput * Player.Speed * 30000, RB.velocity.y);
+            if(DashTime <= 0){
+                IsDashing = true;
+                TempSpeed = Player.Speed;
+                Player.Speed = Player.Speed * 2.5f;
+                DashTime = 0.2f;
             }
         }
 
@@ -129,7 +138,13 @@ public class Controls : MonoBehaviour
             }
         }
 
-
+        if(DashTime > 0){
+            DashTime -= Time.deltaTime;
+        }
+        if(!IsJumping && IsDashing && DashTime <= 0){
+            Player.Speed = TempSpeed;
+            IsDashing = false;
+        }
     }
     private float RollAccuracy(float accuracy){
         return Random.Range(-accuracy, accuracy);

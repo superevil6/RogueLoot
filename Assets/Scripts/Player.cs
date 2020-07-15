@@ -17,7 +17,9 @@ public class Player : Actor
     public int Luck;
     public Text EquippedWeapon;
     public Text ModuleText;
+    public Text MoneyText;
     public Image HealthBar;
+    public int Money;
 
 
     void Start()
@@ -33,6 +35,7 @@ public class Player : Actor
     void Update()
     {
         EquippedWeapon.text = Weapons[CurrentWeapon].Name;
+        MoneyText.text = Money.ToString();
         if(Weapons[CurrentWeapon].Upgrades.Count >= 1){
             ModuleText.text = Weapons[CurrentWeapon].Upgrades[0].Name;
         }
