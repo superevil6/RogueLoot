@@ -18,7 +18,6 @@ public class QuickItemPanel : MonoBehaviour
     private void OnEnable()
     {
         Item = GetComponentInParent<Pickup>().Item;
-        print(Item.Name);
         ItemName.text = Item.Name;
         ItemDescription.text = Item.Description;
     }

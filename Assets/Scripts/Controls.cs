@@ -53,10 +53,13 @@ public class Controls : MonoBehaviour
                         if(!go.activeInHierarchy && bulletsToShoot > 0){
                             go.transform.position = transform.position;
                             go.GetComponent<Bullet>().Direction = 
-                                new Vector2((shotDirection.x * Player.Weapons[Player.CurrentWeapon].Attack.Distance) + RollAccuracy(Player.Weapons[Player.CurrentWeapon].Attack.Accuracy) + transform.position.x, 
-                                (shotDirection.y * Player.Weapons[Player.CurrentWeapon].Attack.Distance) + RollAccuracy(Player.Weapons[Player.CurrentWeapon].Attack.Accuracy) + transform.position.y);
+                                new Vector2((shotDirection.x * Player.Weapons[Player.CurrentWeapon].Attack.Distance) 
+                                + RollAccuracy(Player.Weapons[Player.CurrentWeapon].Attack.Accuracy) + transform.position.x, 
+                                (shotDirection.y * Player.Weapons[Player.CurrentWeapon].Attack.Distance) 
+                                + RollAccuracy(Player.Weapons[Player.CurrentWeapon].Attack.Accuracy) + transform.position.y);
                             go.GetComponent<Bullet>().Attack = Player.Weapons[Player.CurrentWeapon].Attack;
-                            go.GetComponent<Bullet>().StartPosition = new Vector2(shotDirection.x / 2.5f  + transform.position.x, shotDirection.y / 2.5f + transform.position.y);
+                            go.GetComponent<Bullet>().StartPosition = new Vector2(shotDirection.x / 2.5f  
+                            + transform.position.x, shotDirection.y / 2.5f + transform.position.y);
                             go.SetActive(true);
                             bulletsToShoot -= 1;
                         }
@@ -77,12 +80,12 @@ public class Controls : MonoBehaviour
             JumpsRemaining = Player.JumpNumber;
         }
 
-        // if(Input.GetButtonDown("Menu")){
-        //     MenuOpen = !MenuOpen;
-        //     RB.velocity = new Vector2(0, 0); //So the player doesn't keep moving when the menu is open.
-        //     MenuPanel.SetActive(!MenuPanel.activeInHierarchy);
-        //     MenuPanel.transform.position = Player.transform.position;
-        // }
+        if(Input.GetButtonDown("Menu")){
+            MenuOpen = !MenuOpen;
+            RB.velocity = new Vector2(0, 0); //So the player doesn't keep moving when the menu is open.
+            MenuPanel.SetActive(!MenuPanel.activeInHierarchy);
+            MenuPanel.transform.position = Player.transform.position;
+        }
         if(Input.GetButtonDown("L button") && Grounded){
             IsJumping = true;
             JumptimeCounter = JumpTime;
@@ -119,7 +122,6 @@ public class Controls : MonoBehaviour
         }
 
         if(Input.GetButtonDown("Weapon Swap Left")){
-            print("Swap Left");
             if(Player.CurrentWeapon > 0){
                 Player.CurrentWeapon -= 1;
             }
@@ -129,7 +131,6 @@ public class Controls : MonoBehaviour
 
         }
         if(Input.GetButtonDown("Weapon Swap Right")){
-            print("Swap Right");
             if(Player.CurrentWeapon < Player.Weapons.Count - 1){
                 Player.CurrentWeapon += 1;
             }

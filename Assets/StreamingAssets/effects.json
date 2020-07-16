@@ -2,229 +2,262 @@
     {
         "Name" : "Strength",
         "Rarity" : "Normal",
+        "Type" : "Power",
         "EquipmentType" : "Weapon Accessory",
-        "LowerPowerBonus" : "1",
-        "UpperPowerBonus" : "4"
+        "Lower" : "1",
+        "Upper" : "4"
     },
     {
         "Name" : "Luck",
         "Rarity" : "Normal",
+        "Type" : "Luck",
         "EquipmentType" : "Armor Accessory",
-        "LowerLuckBonus" : "3",
-        "UpperLuckBonus" : "4"
+        "Lower" : "3",
+        "Upper" : "4"
     },
     {
         "Name" : "Protection",
         "Rarity" : "Normal",
+        "Type" : "Defense",
         "EquipmentType" : "Armor Accessory",
-        "LowerDefenseBonus" : "1",
-        "UpperDefenseBonus" : "3"
+        "Lower" : "1",
+        "Upper" : "3"
     },
     {
         "Name" : "Defense",
         "Rarity" : "Magical",
+        "Type" : "Defense",
         "EquipmentType" : "Armor Accessory",
-        "LowerDefenseBonus" : "3",
-        "UpperDefenseBonus" : "6"
+        "Lower" : "3",
+        "Upper" : "6"
     },
     {
         "Name" : "Stoutness",
         "Rarity" : "Rare",
+        "Type" : "Defense",
         "EquipmentType" : "Armor Accessory",
-        "LowerDefenseBonus" : "6",
-        "UpperDefenseBonus" : "8"
+        "Lower" : "6",
+        "Upper" : "8"
     },
     {
         "Name" : "Stoicness",
         "Rarity" : "Legendary",
+        "Type" : "Defense",
         "EquipmentType" : "Armor Accessory",
-        "LowerDefenseBonus" : "8",
-        "UpperDefenseBonus" : "12"
+        "Lower" : "8",
+        "Upper" : "12"
     },
     {
         "Name" : "Speed",
         "Rarity" : "Normal",
+        "Type" : "Speed",
         "EquipmentType" : "Armor Accessory",
-        "LowerPlayerSpeedBonus" : "1",
-        "UpperPlayerSpeedBonus" : "3"
+        "Lower" : "1",
+        "Upper" : "3"
     },
     {
         "Name" : "Plenty",
         "Rarity" : "Normal",
+        "Type" : "ShotSpeed",
         "EquipmentType" : "Weapon Accessory",
-        "BulletCountBonus" : "1"
+        "Bonus" : "1"
     },
     {
         "Name" : "Bountiful",
         "Rarity" : "Magical",
+        "Type" : "ShotSpeed",
         "EquipmentType" : "Weapon Accessory",
-        "BulletCountBonus" : "2"
+        "Bonus" : "2"
     },
     {
         "Name" : "Splendor",
         "Rarity" : "Rare",
+        "Type" : "ShotSpeed",
         "EquipmentType" : "Weapon Accessory",
-        "BulletCountBonus" : "3"
+        "Bonus" : "3"
     },
     {
         "Name" : "Bullet Storm",
         "Rarity" : "Magical",
+        "Type" : "ShotSpeed",
         "EquipmentType" : "Weapon Accessory",
-        "BulletCountBonus" : "4"
+        "Bonus" : "4"
     },
     {
         "Name" : "Fervor",
         "Rarity" : "Normal",
         "EquipmentType" : "Weapon Accessory",
-        "LowerAttackSpeedBonus" : "-0.05",
-        "UpperAttackSpeedBonus" : "-0.1"
+        "Type" : "AttackSpeed",
+        "Lower" : "-0.05",
+        "Upper" : "-0.1"
     },
     {
         "Name" : "Jumbo",
         "Rarity" : "Normal",
         "EquipmentType" : "Weapon Accessory",
-        "LowerBulletSizeBonus" : "0.1",
-        "UpperBulletSizeBonus" : "0.3"
+        "Type" : "Size",
+        "Lower" : "0.1",
+        "Upper" : "0.3"
     },
     {
         "Name" : "Accuracy",
         "Rarity" : "Normal",
         "EquipmentType" : "Weapon Accessory",
-        "LowerAccuracyBonus" : "-0.05",
-        "UpperAccuracyBonus" : "-0.1"
+        "Type" : "Accuracy",
+        "Lower" : "-0.05",
+        "Upper" : "-0.1"
     },
     {
         "Name" : "Percision",
         "Rarity" : "Magical",
         "EquipmentType" : "Weapon Accessory",
-        "LowerAccuracyBonus" : "-0.2",
-        "UpperAccuracyBonus" : "-0.3"
+        "Type" : "Accuracy",
+        "Lower" : "-0.2",
+        "Upper" : "-0.3"
     },
     {
-        "Name" : "Targetting",
+        "Name" : "Targeting",
         "Rarity" : "Rare",
         "EquipmentType" : "Weapon Accessory",
-        "LowerAccuracyBonus" : "-0.4",
-        "UpperAccuracyBonus" : "-0.5"
+        "Type" : "Accuracy",
+        "Lower" : "-0.4",
+        "Upper" : "-0.5"
     },
     {
         "Name" : "Punctiliousness",
         "Rarity" : "Legendary",
         "EquipmentType" : "Weapon Accessory",
-        "LowerAccuracyBonus" : "-0.6",
-        "UpperAccuracyBonus" : "-0.7"
+        "Type" : "Accuracy",
+        "Lower" : "-0.6",
+        "Upper" : "-0.7"
     },
     {
         "Name" : "Coolness",
         "Rarity" : "Normal",
         "EquipmentType" : "Weapon",
-        "LowerColdDamageBonus" : "1",
-        "UpperColdDamageBonus" : "3"
+        "Type" : "ColdDamage",
+        "Lower" : "1",
+        "Upper" : "3"
     },
     {
         "Name" : "Frost",
         "Rarity" : "Magical",
         "EquipmentType" : "Weapon",
-        "LowerColdDamageBonus" : "3",
-        "UpperColdDamageBonus" : "5"
+        "Type" : "ColdDamage",
+        "Lower" : "3",
+        "Upper" : "5"
     },
     {
         "Name" : "Glaciar",
         "Rarity" : "Rare",
         "EquipmentType" : "Weapon",
-        "LowerColdDamageBonus" : "5",
-        "UpperColdDamageBonus" : "7"
+        "Type" : "ColdDamage",
+        "Lower" : "5",
+        "Upper" : "7"
     },
     {
         "Name" : "Cocytus",
         "Rarity" : "Legendary",
         "EquipmentType" : "Weapon",
-        "LowerColdDamageBonus" : "7",
-        "UpperColdDamageBonus" : "10"
+        "Type" : "ColdDamage",
+        "Lower" : "7",
+        "Upper" : "10"
     },
     {
         "Name" : "Ember",
         "Rarity" : "Normal",
         "EquipmentType" : "Weapon",
-        "LowerFireDamageBonus" : "1",
-        "UpperFireDamageBonus" : "3"
+        "Type" : "FireDamage",
+        "Lower" : "1",
+        "Upper" : "3"
     },
     {
         "Name" : "Cinder",
         "Rarity" : "Magical",
         "EquipmentType" : "Weapon",
-        "LowerFireDamageBonus" : "3",
-        "UpperFireDamageBonus" : "5"
+        "Type" : "FireDamage",
+        "Lower" : "3",
+        "Upper" : "5"
     },
     {
         "Name" : "Flame",
         "Rarity" : "Rare",
         "EquipmentType" : "Weapon",
-        "LowerFireDamageBonus" : "5",
-        "UpperFireDamageBonus" : "7"
+        "Type" : "FireDamage",
+        "Lower" : "5",
+        "Upper" : "7"
     },
     {
         "Name" : "Inferno",
         "Rarity" : "Legendary",
         "EquipmentType" : "Weapon",
-        "LowerFireDamageBonus" : "7",
-        "UpperFireDamageBonus" : "10"
+        "Type" : "FireDamage",
+        "Lower" : "7",
+        "Upper" : "10"
     },
     {
         "Name" : "Jolting",
         "Rarity" : "Normal",
         "EquipmentType" : "Weapon",
-        "LowerElectricDamageBonus" : "1",
-        "UpperElectricDamageBonus" : "3"
+        "Type" : "ElectricDamage",
+        "Lower" : "1",
+        "Upper" : "3"
     },
     {
         "Name" : "Zaps",
         "Rarity" : "Magical",
         "EquipmentType" : "Weapon",
-        "LowerElectricDamageBonus" : "3",
-        "UpperElectricDamageBonus" : "5"
+        "Type" : "ElectricDamage",
+        "Lower" : "3",
+        "Upper" : "5"
     },
     {
         "Name" : "Electrocution",
         "Rarity" : "Rare",
         "EquipmentType" : "Weapon",
-        "LowerElectricDamageBonus" : "5",
-        "UpperElectricDamageBonus" : "7"
+        "Type" : "ElectricDamage",
+        "Lower" : "5",
+        "Upper" : "7"
     },
     {
         "Name" : "Lightning",
         "Rarity" : "Legendary",
         "EquipmentType" : "Weapon",
-        "LowerElectricDamageBonus" : "7",
-        "UpperElectricDamageBonus" : "10"
+        "Type" : "ElectricDamage",
+        "Lower" : "7",
+        "Upper" : "10"
     },
     {
         "Name" : "Illness",
         "Rarity" : "Normal",
         "EquipmentType" : "Weapon",
-        "LowerPoisonDamageBonus" : "1",
-        "UpperPoisonDamageBonus" : "3"
+        "Type" : "PoisonDamage",
+        "Lower" : "1",
+        "Upper" : "3"
     },
     {
         "Name" : "Taint",
         "Rarity" : "Magical",
         "EquipmentType" : "Weapon",
-        "LowerPoisonDamageBonus" : "3",
-        "UpperPoisonDamageBonus" : "5"
+        "Type" : "PoisonDamage",
+        "Lower" : "3",
+        "Upper" : "5"
     },
     {
         "Name" : "Poison",
         "Rarity" : "Rare",
         "EquipmentType" : "Weapon",
-        "LowerPoisonDamageBonus" : "5",
-        "UpperPoisonDamageBonus" : "7"
+        "Type" : "PoisonDamage",
+        "Lower" : "5",
+        "Upper" : "7"
     },
     {
         "Name" : "Disease",
         "Rarity" : "Legendary",
         "EquipmentType" : "Weapon",
-        "LowerPoisonDamageBonus" : "7",
-        "UpperPoisonDamageBonus" : "10"
+        "Type" : "PoisonDamage",
+        "Lower" : "7",
+        "Upper" : "10"
     }
 ]}
 

@@ -49,7 +49,6 @@ public class Player : Actor
         if(other.tag == "EnemyBullet"){
             CurrentHealth -= Mathf.RoundToInt(other.transform.GetComponent<Bullet>().TotalDamage - Defense);
             other.transform.gameObject.SetActive(false);
-            print(CurrentHealth);
         }
         if(other.tag == "Enemy"){
             CurrentHealth -= Mathf.RoundToInt(other.transform.GetComponent<Actor>().Power - Defense);
@@ -67,14 +66,14 @@ public class Player : Actor
             // Speed += Armor.Speed;
             break;
             case EquipmentType.Accessory:
-            TotalHealth += Accessory.HealthBonus;
-            Defense += Accessory.DefenseBonus;
-            TotalShield += Accessory.ShieldBonus;
-            Speed += Accessory.Speed;
-            Weapon.Attack.BaseDamage += Accessory.BaseDamage;
-            Weapon.Attack.Shots += Accessory.Shots;
-            Weapon.Attack.Size += Accessory.Size;
-            Weapon.Attack.AttackSpeed += Accessory.AttackSpeed;
+            // TotalHealth += Accessory.HealthBonus;
+            // Defense += Accessory.DefenseBonus;
+            // TotalShield += Accessory.ShieldBonus;
+            // Speed += Accessory.Speed;
+            // Weapon.Attack.BaseDamage += Accessory.BaseDamage;
+            // Weapon.Attack.Shots += Accessory.Shots;
+            // Weapon.Attack.Size += Accessory.Size;
+            // Weapon.Attack.AttackSpeed += Accessory.AttackSpeed;
             break;
         }
 

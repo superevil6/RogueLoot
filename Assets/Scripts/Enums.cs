@@ -37,5 +37,21 @@ namespace Enums{
         Money,
         Health
     }
+    public enum EnemyAgression{
+        Docile,
+        Agressive,
+        SuperAgressive
+    }
+    public enum EnemyAttackStyle{
+        Melee,
+        Range
+    }
+    public enum EnemyMovementStyle{
+        Normal,
+        Jumping,
+        Stationary,
+        Flying,
+        Ground
+    }
 }
 

@@ -35,7 +35,6 @@ public class UpgradePanel : MenuPanel
                 if(Input.GetButtonDown("Confirm") && Menu.CanMoveCursor){
                     Menu.InEquipableUpgradesMenu = true;
                     Menu.InEquippedUpgradesMenu = false;
-                    print("on Equipped");
 
                     Menu.SelectInitialPanel(Menu.UnequippedUpgrades.transform, "Unequip");
                     Selected = false;
@@ -58,10 +57,8 @@ public class UpgradePanel : MenuPanel
                 if(Input.GetButtonDown("Confirm") && Menu.CanMoveCursor){
                     Menu.InEquippedUpgradesMenu = true;
                     Menu.InEquipableUpgradesMenu = false;
-                    print("What the fuck!?");
                     // Menu.SelectInitialPanel(Menu.EquippedUpgrades.transform, "Equipped");
                     if(Player.Inventory[Menu.CurrentlySelectedItemPanel].Upgrades.ElementAtOrDefault(SlotIndex) != null){
-                        print("Whaaaa?!");
                         UnequipUpgrade(SlotIndex);
                     }
                     // UnequipUpgrade(AlreadyEquipedUpgradeIndex);
@@ -97,7 +94,6 @@ public class UpgradePanel : MenuPanel
     }
     public void EquipUpgrade(int index){
         if(Player.Inventory[Menu.CurrentlySelectedItemPanel].Upgrades.Count < Player.Inventory[Menu.CurrentlySelectedItemPanel].UpgradeSlots){
-            print(transform.parent.transform.GetChild(SlotIndex).GetComponent<MenuPanel>().PanelType);
             Player.Inventory[Menu.CurrentlySelectedItemPanel].Upgrades.Add(Player.Inventory[index]);
             Player.Inventory[UpgradeIndex].Equipped = true;
             Player.RemoveStatsFromEquipment(ET);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enums;
 using UnityEngine;
 using System.IO;
+using System.Reflection;
 
 public class EquipmentGeneration : MonoBehaviour
 {
@@ -118,7 +119,6 @@ public class EquipmentGeneration : MonoBehaviour
         Upgrade newUpgrade = new Upgrade("testUpgrade", EquipmentType.Upgrade, rarity, 100);
         Effect newEffect;
         newEffect = EG.GenerateEffect(EquipmentType.Upgrade, newUpgrade.Rarity);
-        print(newEffect + "new effect");
         newUpgrade.Effects.Add(newEffect);
         //temporarily for testing
         newUpgrade.UpgradeType = EquipmentType.Weapon;
@@ -154,43 +154,56 @@ public class EquipmentGeneration : MonoBehaviour
     #endregion
     #region AddEffectStats
     public void AddStatFromEffectToWeapon(Effect effect, Weapon weapon){
-        weapon.Attack.BaseDamage += effect.PowerBonus;
-        weapon.Attack.AttackSpeed += effect.AttackSpeedBonus;
-        weapon.Attack.Shots += effect.BulletCountBonus;
-        weapon.Attack.Size += effect.BulletSizeBonus;
-        weapon.Attack.Accuracy += effect.AccuracyBonus;
-        weapon.Attack.ColdDamage += effect.ColdBonus;
-        weapon.Attack.FireDamage += effect.FireBonus;
-        weapon.Attack.ElectricDamage += effect.ElectricBonus;
-        weapon.Attack.PoisonDamage += effect.PoisonBonus;
+        var type = weapon.Attack.GetType();
+        var prop = type.GetField(effect.Type);
+        if(prop != null){
+            var propType = prop.FieldType;
+            if(propType == typeof(int)){
+                prop.SetValue(weapon.Attack, (int)effect.Bonus);
+            }
+            else{
+                prop.SetValue(weapon.Attack, effect.Bonus); 
+            }
+        }
     }
     public void AddStatFromEffectToArmor(Effect effect, Armor armor){
-        armor.HealthBonus += effect.HealthBonus;
-        armor.ShieldBonus += effect.ShieldBonus;
-        armor.DefenseBonus += effect.DefenseBonus;
-        armor.Speed += effect.PlayerSpeedBonus;
+        var type = armor.GetType();
+        var prop = type.GetField(effect.Type);
+        if(prop != null){
+            var propType = prop.GetType();
+            if(propType == typeof(int)){
+                prop.SetValue(armor, (int)effect.Bonus);
+            }
+            else{
+                prop.SetValue(armor, effect.Bonus); 
+            }
+        }
     }
     public void AddStatFromEffectToAccessory(Effect effect, Accessory accessory){
-        accessory.BaseDamage += effect.PowerBonus;
-        accessory.AttackSpeed += effect.AttackSpeedBonus;
-        accessory.Shots += effect.BulletCountBonus;
-        accessory.Size += effect.BulletSizeBonus;
-        accessory.HealthBonus += effect.HealthBonus;
-        accessory.ShieldBonus += effect.ShieldBonus;
-        accessory.DefenseBonus += effect.DefenseBonus;
-        accessory.Speed += effect.PlayerSpeedBonus;
-        accessory.AccuracyBonus += effect.AccuracyBonus;
-
+        var type = accessory.GetType();
+        var prop = type.GetField(effect.Type);
+        if(prop != null){
+            var propType = prop.GetType();
+            if(propType == typeof(int)){
+                prop.SetValue(accessory, (int)effect.Bonus);
+            }
+            else{
+                prop.SetValue(accessory, effect.Bonus); 
+            }
+        }
     }
     public void AddStatFromEffectToUpgrade(Effect effect, Upgrade upgrade){
-        upgrade.BaseDamage += effect.PowerBonus;
-        upgrade.AttackSpeed += effect.AttackSpeedBonus;
-        upgrade.Shots += effect.BulletCountBonus;
-        upgrade.Size += effect.BulletSizeBonus;
-        upgrade.HealthBonus += effect.HealthBonus;
-        upgrade.ShieldBonus += effect.ShieldBonus;
-        upgrade.DefenseBonus += effect.DefenseBonus;
-        upgrade.Speed += effect.PlayerSpeedBonus;
+        var type = upgrade.GetType();
+        var prop = type.GetField(effect.Type);
+        if(prop != null){
+            var propType = prop.GetType();
+            if(propType == typeof(int)){
+                prop.SetValue(upgrade, (int)effect.Bonus);
+            }
+            else{
+                prop.SetValue(upgrade, effect.Bonus); 
+            }
+        }
     }
     #endregion
 }
