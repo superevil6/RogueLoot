@@ -13,4 +13,5 @@ public class EnemyBehavior : ScriptableObject
     public EnemyMovementStyle MovementStyle;
     public float ActionCooldown;
     public bool DropsItems;
+    public float AgroDistance;
 }

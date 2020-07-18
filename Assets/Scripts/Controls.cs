@@ -12,15 +12,22 @@ public class Controls : MonoBehaviour
     private int JumpsRemaining;
     private float MovementInput;
     private bool Grounded;
+    private bool OnWallLeft;
+    private bool OnWallRight;
     public Transform FeetPosition;
     public float CheckRadius;
     public LayerMask GroundIdentifier;
+    public Transform LeftSide;
+    public Transform RightSide;
+    // public LayerMask WallIdentifier;
     private float JumptimeCounter;
     public float JumpTime;
     private bool IsJumping;
     private float DashTime;
     private float TempSpeed;
     private bool IsDashing;
+    private bool IsWallJumping;
+    private float WallJumpTimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,9 +39,9 @@ public class Controls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        MovementInput = Input.GetAxisRaw("HorizontalLeft");
-        RB.velocity = new Vector2(MovementInput * Player.Speed, RB.velocity.y);
-        if(!MenuOpen){
+        if(!MenuOpen && !IsWallJumping){
+            MovementInput = Input.GetAxisRaw("HorizontalLeft");
+            RB.velocity = new Vector2(MovementInput * Player.Speed, RB.velocity.y);
             // RB.velocity = new Vector2(
             //     Mathf.Lerp(0, Input.GetAxisRaw("HorizontalLeft") * Player.Speed, 0.8f), 
             //     //Mathf.Lerp(0, Input.GetAxisRaw("VerticalLeft") * Player.Speed, 0.8f)
@@ -51,14 +58,15 @@ public class Controls : MonoBehaviour
                     int bulletsToShoot = Player.Weapons[Player.CurrentWeapon].Attack.Shots;
                     foreach(GameObject go in Player.Bullets.PooledItems){
                         if(!go.activeInHierarchy && bulletsToShoot > 0){
+                            var bullet = go.GetComponent<Bullet>();
                             go.transform.position = transform.position;
-                            go.GetComponent<Bullet>().Direction = 
+                                bullet.Direction = 
                                 new Vector2((shotDirection.x * Player.Weapons[Player.CurrentWeapon].Attack.Distance) 
                                 + RollAccuracy(Player.Weapons[Player.CurrentWeapon].Attack.Accuracy) + transform.position.x, 
                                 (shotDirection.y * Player.Weapons[Player.CurrentWeapon].Attack.Distance) 
                                 + RollAccuracy(Player.Weapons[Player.CurrentWeapon].Attack.Accuracy) + transform.position.y);
-                            go.GetComponent<Bullet>().Attack = Player.Weapons[Player.CurrentWeapon].Attack;
-                            go.GetComponent<Bullet>().StartPosition = new Vector2(shotDirection.x / 2.5f  
+                            bullet.Attack = Player.Weapons[Player.CurrentWeapon].Attack;
+                            bullet.StartPosition = new Vector2(shotDirection.x / 2.5f  
                             + transform.position.x, shotDirection.y / 2.5f + transform.position.y);
                             go.SetActive(true);
                             bulletsToShoot -= 1;
@@ -70,53 +78,66 @@ public class Controls : MonoBehaviour
             else{
                 TimeBetweenAttacks -= Time.deltaTime;
             }
-
         }
     }
     void Update()
     {
         Grounded = Physics2D.OverlapCircle(FeetPosition.position, CheckRadius, GroundIdentifier);
-        if(Grounded && JumpsRemaining < Player.JumpNumber){
+        OnWallLeft = Physics2D.OverlapCircle(LeftSide.position, CheckRadius, GroundIdentifier);
+        OnWallRight = Physics2D.OverlapCircle(RightSide.position, CheckRadius, GroundIdentifier);
+
+        if(Grounded || OnWallLeft || OnWallRight){
             JumpsRemaining = Player.JumpNumber;
         }
 
-        if(Input.GetButtonDown("Menu")){
-            MenuOpen = !MenuOpen;
-            RB.velocity = new Vector2(0, 0); //So the player doesn't keep moving when the menu is open.
-            MenuPanel.SetActive(!MenuPanel.activeInHierarchy);
-            MenuPanel.transform.position = Player.transform.position;
-        }
-        if(Input.GetButtonDown("L button") && Grounded){
-            IsJumping = true;
-            JumptimeCounter = JumpTime;
-            RB.velocity = Vector2.up * Player.JumpHeight;
-            JumpsRemaining -= 1;
-        }
-        if(Input.GetButton("L button") && IsJumping){
-            if(JumptimeCounter > 0){
+        // if(Input.GetButtonDown("Menu")){
+        //     MenuOpen = !MenuOpen;
+        //     RB.velocity = new Vector2(0, 0); //So the player doesn't keep moving when the menu is open.
+        //     MenuPanel.SetActive(!MenuPanel.activeInHierarchy);
+        //     MenuPanel.transform.position = Player.transform.position;
+        // }
+        if(Input.GetButtonDown("L button") && !OnWallLeft && !OnWallRight && !IsJumping){
+            if(JumpsRemaining > 0 || Grounded){
+                IsJumping = true;
+                JumptimeCounter = JumpTime;
                 RB.velocity = Vector2.up * Player.JumpHeight;
-                JumptimeCounter -= Time.deltaTime;
+                JumpsRemaining -= 1;
             }
-            else{
-                IsJumping = false;
-            }
+        }
+
+        #region WallJumping
+        if(Input.GetButtonDown("L button") && OnWallLeft){
+            WallJump(new Vector2(1, 1) * Player.JumpHeight * 1.5f);
+        }        
+        if(Input.GetButtonDown("L button") && OnWallRight){
+            WallJump(new Vector2(-1, 1) * Player.JumpHeight * 1.5f);
+        }
+        if(IsWallJumping){
+            WallJumpTimer -= Time.deltaTime;
+        }
+        if(IsWallJumping && WallJumpTimer <= 0){
+            IsWallJumping = false;
+        }
+        #endregion
+
+        if(JumptimeCounter > 0){
+            JumptimeCounter -= Time.deltaTime;
+        }
+        else{
+            IsJumping = false;
         }
         if(Input.GetButtonUp("L button")){
             IsJumping = false;
         }
-        if(Input.GetButtonDown("R button") && !IsJumping){
-            // if(Input.GetAxisRaw("HorizontalLeft") > 0){
-            //     RB.AddForce(-Vector2.left * 5000);
-            // }
-            // if(Input.GetAxisRaw("HorizontalLeft") < 0){
-            //     RB.AddForce(Vector2.left * 5000);
-            // }
-            // MovementInput = Input.GetAxisRaw("HorizontalLeft");
-            // RB.velocity = new Vector2(MovementInput * Player.Speed * 30000, RB.velocity.y);
+        if(Input.GetButton("L button") && IsJumping){
+            RB.velocity = Vector2.up * Player.JumpHeight;
+        }
+
+        if(Input.GetButtonDown("R button") && Grounded){
             if(DashTime <= 0){
                 IsDashing = true;
                 TempSpeed = Player.Speed;
-                Player.Speed = Player.Speed * 2.5f;
+                Player.Speed = Player.Speed * 2f;
                 DashTime = 0.2f;
             }
         }
@@ -142,12 +163,21 @@ public class Controls : MonoBehaviour
         if(DashTime > 0){
             DashTime -= Time.deltaTime;
         }
-        if(!IsJumping && IsDashing && DashTime <= 0){
-            Player.Speed = TempSpeed;
-            IsDashing = false;
+        if(IsDashing && DashTime <= 0){
+            if(Grounded || OnWallLeft || OnWallRight){
+                Player.Speed = TempSpeed;
+                IsDashing = false;
+            }
         }
     }
     private float RollAccuracy(float accuracy){
         return Random.Range(-accuracy, accuracy);
+    }
+    private void WallJump(Vector2 direction){
+        WallJumpTimer = 0.15f;
+        IsWallJumping = true;
+        JumptimeCounter = JumpTime;
+        RB.velocity = direction;
+        JumpsRemaining -= 1;
     }
 }

@@ -9,8 +9,9 @@ public class Armor : Item
     public int HealthBonus;
     public int ShieldBonus;
     public float Speed;
+    public int JumpNumber;
 
-    public Armor(string name, EquipmentType equipmentType, Rarity rarity, int value, int healthBonus, int defenseBonus, int shieldBonus, int upgradeSlots){
+    public Armor(string name, EquipmentType equipmentType, Rarity rarity, int value, int healthBonus, int defenseBonus, int shieldBonus, int upgradeSlots, int jumpNumber){
         Name = name;
         EquipmentType = equipmentType;
         Rarity = rarity;
@@ -18,7 +19,9 @@ public class Armor : Item
         HealthBonus = healthBonus;
         DefenseBonus = defenseBonus;
         ShieldBonus = shieldBonus;
+        JumpNumber = jumpNumber;
         UpgradeSlots = upgradeSlots;
+        
         Upgrades = new List<Item>();
         Effects = new List<Effect>();
     }

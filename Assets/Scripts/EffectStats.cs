@@ -5,14 +5,17 @@ using UnityEngine;
 public class EffectStats : MonoBehaviour
 {
     public Actor Actor;
-    public int ColdThreshhold = 5;
+    public int ColdThreshold = 5;
     public int ColdBuildup;
-    public int FireThreshhold = 5;
+    public int FireThreshold = 5;
     public int FireBuildup;
-    public int ElectricThreshhold = 5;
+    public int ElectricThreshold = 5;
     public int ElectricBuildup;
-    public int PoisonThreshhold = 5;
+    public int PoisonThreshold = 5;
     public int PoisonBuildup;
+    public int AcidThreshold = 5;
+    public int AcidBuildup;
+    private bool Burning = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,27 +25,34 @@ public class EffectStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PoisonBuildup > PoisonThreshhold){
+        if(PoisonBuildup > PoisonThreshold){
             StartCoroutine("StartPoison");
             PoisonBuildup = 0;
         }
-        if(ColdBuildup > ColdThreshhold){
+        if(ColdBuildup > ColdThreshold){
             StartCoroutine("StartCold");
             ColdBuildup = 0;
         }
-        if(ElectricBuildup > ElectricThreshhold){
+        if(ElectricBuildup > ElectricThreshold){
             Actor.CurrentShield -= 100;
             ElectricBuildup = 0;
         }
-        if(FireBuildup > FireThreshhold){
+        if(FireBuildup > FireThreshold){
             StartCoroutine("StartFire");
             FireBuildup = 0;
+        }
+        if(AcidBuildup > AcidThreshold){
+            StartCoroutine("StartAcid");
+            AcidBuildup = 0;
+        }
+        if(Burning){
+            Actor.CurrentHealth -= 1;
         }
     }
     public IEnumerator StartPoison(){
         var initialPower = Actor.Power;
         var initialColor = Actor.SR.color;
-        Actor.Power -= Actor.Power/2;
+        Actor.Power /= 2;
         Actor.SR.color = new Color32(0, 50, 0, 100);
         yield return new WaitForSeconds(5);
         Actor.SR.color = initialColor;
@@ -59,9 +69,19 @@ public class EffectStats : MonoBehaviour
     }
     public IEnumerator StartFire(){
         var initialColor = Actor.SR.color;
-        Actor.CurrentHealth -= 2;
+        Burning = true;
         Actor.SR.color = new Color32(100, 50, 0, 100);
         yield return new WaitForSeconds(5);
+        Burning = false;
+        Actor.SR.color = initialColor;
+    }
+    public IEnumerator StartAcid(){
+        var initialColor = Actor.SR.color;
+        var initialDefense = Actor.Defense;
+        Actor.Defense /= 2;
+        Actor.SR.color = new Color32(100, 50, 0, 100);
+        yield return new WaitForSeconds(5);
+        Actor.Defense =initialDefense;
         Actor.SR.color = initialColor;
     }
 }

@@ -96,7 +96,12 @@ public class EffectGeneration : MonoBehaviour
 
     public Effect CheckForEffect(Effect effect){
         if(effect.Lower != 0 && effect.Upper != 0 && effect.Bonus == 0){
-            effect.Bonus = SetRandomValues(effect.Lower, effect.Upper);
+            if((effect.Lower % 1) == 0){
+                effect.Bonus = Mathf.RoundToInt(SetRandomValues(effect.Lower, effect.Upper));
+            }
+            else{
+                effect.Bonus = SetRandomValues(effect.Lower, effect.Upper);
+            }
         }
         effect.Description = effect.Type + " " + effect.Bonus + "\n";
         return effect;

@@ -27,9 +27,6 @@ public class Player : Actor
     void Start()
     {
         Bullets.InstantiateObjects(NumberOfPooledBullets);
-        AddStatsFromEquipment(EquipmentType.Weapon);
-        AddStatsFromEquipment(EquipmentType.Armor);
-        AddStatsFromEquipment(EquipmentType.Accessory);
 
     }
 
@@ -39,7 +36,6 @@ public class Player : Actor
         EquippedWeapon.text = Weapons[CurrentWeapon].Name;
         MoneyText.text = Money.ToString();
         EquippedArmor.text = Armor.Name;
-        // ArmorModule.text = Armor.Upgrades[0].Name;
         if(Weapons[CurrentWeapon].Upgrades.Count >= 1){
             ModuleText.text = Weapons[CurrentWeapon].Upgrades[0].Name;
         }
@@ -60,16 +56,18 @@ public class Player : Actor
                 
             break;
             case EquipmentType.Armor:
-            // TotalHealth += Armor.HealthBonus;
-            // Defense += Armor.DefenseBonus;
-            // TotalShield += Armor.ShieldBonus;
-            // Speed += Armor.Speed;
+            TotalHealth += Armor.HealthBonus;
+            Defense += Armor.DefenseBonus;
+            TotalShield += Armor.ShieldBonus;
+            Speed += Armor.Speed;
+            JumpNumber += Armor.JumpNumber;
             break;
             case EquipmentType.Accessory:
-            // TotalHealth += Accessory.HealthBonus;
-            // Defense += Accessory.DefenseBonus;
-            // TotalShield += Accessory.ShieldBonus;
-            // Speed += Accessory.Speed;
+            TotalHealth += Accessory.HealthBonus;
+            Defense += Accessory.DefenseBonus;
+            TotalShield += Accessory.ShieldBonus;
+            Speed += Accessory.Speed;
+            JumpNumber += Accessory.JumpNumber;
             // Weapon.Attack.BaseDamage += Accessory.BaseDamage;
             // Weapon.Attack.Shots += Accessory.Shots;
             // Weapon.Attack.Size += Accessory.Size;
@@ -94,11 +92,12 @@ public class Player : Actor
             Defense -= Accessory.DefenseBonus;
             TotalShield -= Accessory.ShieldBonus;
             Speed -= Accessory.Speed;
-            Weapon.Attack.BaseDamage -= Accessory.BaseDamage;
-            Weapon.Attack.Shots -= Accessory.Shots;
-            Weapon.Attack.Size -= Accessory.Size;
-            Weapon.Attack.AttackSpeed -= Accessory.AttackSpeed;
-            Weapon.Attack.Accuracy -= Accessory.AccuracyBonus;
+            JumpNumber -= Accessory.JumpNumber;
+            // Weapon.Attack.BaseDamage -= Accessory.BaseDamage;
+            // Weapon.Attack.Shots -= Accessory.Shots;
+            // Weapon.Attack.Size -= Accessory.Size;
+            // Weapon.Attack.AttackSpeed -= Accessory.AttackSpeed;
+            // Weapon.Attack.Accuracy -= Accessory.AccuracyBonus;
             break;
         }
 

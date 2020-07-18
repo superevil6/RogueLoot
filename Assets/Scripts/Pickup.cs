@@ -54,7 +54,14 @@ public class Pickup : MonoBehaviour
                         player.Weapons.Add((Weapon)Item);
                     }
                     if(PickupType == PickupType.Armor){
+                        player.RemoveStatsFromEquipment(EquipmentType.Armor);
                         player.Armor = (Armor)Item;
+                        player.AddStatsFromEquipment(EquipmentType.Armor);
+                    }
+                    if(PickupType == PickupType.Accessory){
+                        player.RemoveStatsFromEquipment(EquipmentType.Accessory);
+                        player.Accessory = (Accessory)Item;
+                        player.AddStatsFromEquipment(EquipmentType.Accessory);
                     }
                     if(PickupType == PickupType.Upgrade){
                         if(Item.UpgradeType == EquipmentType.Armor){
@@ -88,9 +95,9 @@ public class Pickup : MonoBehaviour
         ItemPanel.SetActive(false);
     }
     public PickupType SelectPickupType(){
-        int typeRNG = Random.Range(0, 100);
+        int typeRNG = 3; //Random.Range(0, 100);
         if(typeRNG <= 10){
-            typeRNG = Random.Range(1, 4);
+            typeRNG = 1;//Random.Range(1, 4);
             switch(typeRNG){
                 case 1: 
                 return PickupType.Weapon;

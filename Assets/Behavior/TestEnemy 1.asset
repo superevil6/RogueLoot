@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c59ae2788c9984f4b81bce35e5846983, type: 3}
-  m_Name: TestEnemy
+  m_Name: TestEnemy 1
   m_EditorClassIdentifier: 
   Attacks:
   - {fileID: 11400000, guid: 2fd4463f6126b074fac327d4bf1fb7be, type: 2}
@@ -18,7 +18,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bf88d42ee3ef3724faf002bcb42d8b36, type: 2}
   - {fileID: 11400000, guid: c9c90ca86fb945f4d9a0fa07f0cc99ea, type: 2}
   Agression: 1
-  AttackStyle: 1
+  AttackStyle: 0
   MovementStyle: 0
   ActionCooldown: 2
   DropsItems: 0

@@ -22,7 +22,10 @@ public class EquipmentGeneration : MonoBehaviour
         Accessory acc = GenerateAccessory();
         Player.Accessory = acc;
         Upgrade upg = GenerateUpgrade();
-        // aWeapon.Upgrades.Add(upg);
+        Player.AddStatsFromEquipment(EquipmentType.Weapon);
+        Player.AddStatsFromEquipment(EquipmentType.Armor);
+        Player.AddStatsFromEquipment(EquipmentType.Accessory);       
+         // aWeapon.Upgrades.Add(upg);
         // Player.Inventory.Add(aWeapon);
     }
 
@@ -58,7 +61,7 @@ public class EquipmentGeneration : MonoBehaviour
 
     public Armor GenerateArmor(){
         Rarity rarity = GenerateRarity(Player.Luck);
-        Armor newArmor = new Armor("testArmor", EquipmentType.Armor, rarity, 100, 10, 1, 0,  2);
+        Armor newArmor = new Armor("testArmor", EquipmentType.Armor, rarity, 100, 10, 1, 0,  2, 0);
         int effectsToAdd = 0;
         switch(newArmor.Rarity){
             case Rarity.Legendary:
@@ -87,7 +90,7 @@ public class EquipmentGeneration : MonoBehaviour
     }
     public Accessory GenerateAccessory(){
         Rarity rarity = GenerateRarity(Player.Luck);
-        Accessory newAccessory = new Accessory("testAccessory", EquipmentType.Accessory, rarity, 100, 1);
+        Accessory newAccessory = new Accessory("testAccessory", EquipmentType.Accessory, rarity, 100, 1, 0);
         int effectsToAdd = 0;
         switch(newAccessory.Rarity){
             case Rarity.Legendary:
@@ -159,10 +162,12 @@ public class EquipmentGeneration : MonoBehaviour
         if(prop != null){
             var propType = prop.FieldType;
             if(propType == typeof(int)){
-                prop.SetValue(weapon.Attack, (int)effect.Bonus);
+                var value = (int)prop.GetValue(weapon.Attack);
+                prop.SetValue(weapon.Attack, (int)effect.Bonus + value);
             }
             else{
-                prop.SetValue(weapon.Attack, effect.Bonus); 
+                var value = (float)prop.GetValue(weapon.Attack);
+                prop.SetValue(weapon.Attack, effect.Bonus + value); 
             }
         }
     }
@@ -170,11 +175,13 @@ public class EquipmentGeneration : MonoBehaviour
         var type = armor.GetType();
         var prop = type.GetField(effect.Type);
         if(prop != null){
-            var propType = prop.GetType();
+            var propType = prop.FieldType;
             if(propType == typeof(int)){
+                var value = (int)prop.GetValue(armor);
                 prop.SetValue(armor, (int)effect.Bonus);
             }
             else{
+                var value = (float)prop.GetValue(armor);
                 prop.SetValue(armor, effect.Bonus); 
             }
         }
@@ -183,11 +190,13 @@ public class EquipmentGeneration : MonoBehaviour
         var type = accessory.GetType();
         var prop = type.GetField(effect.Type);
         if(prop != null){
-            var propType = prop.GetType();
+            var propType = prop.FieldType;
             if(propType == typeof(int)){
+                var value = (int)prop.GetValue(accessory);
                 prop.SetValue(accessory, (int)effect.Bonus);
             }
             else{
+                var value = (float)prop.GetValue(accessory);
                 prop.SetValue(accessory, effect.Bonus); 
             }
         }
@@ -196,11 +205,13 @@ public class EquipmentGeneration : MonoBehaviour
         var type = upgrade.GetType();
         var prop = type.GetField(effect.Type);
         if(prop != null){
-            var propType = prop.GetType();
+            var propType = prop.FieldType;
             if(propType == typeof(int)){
+                var value = (int)prop.GetValue(upgrade);
                 prop.SetValue(upgrade, (int)effect.Bonus);
             }
             else{
+                var value = (float)prop.GetValue(upgrade);
                 prop.SetValue(upgrade, effect.Bonus); 
             }
         }

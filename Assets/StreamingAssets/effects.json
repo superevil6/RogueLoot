@@ -2,8 +2,8 @@
     {
         "Name" : "Strength",
         "Rarity" : "Normal",
-        "Type" : "Power",
-        "EquipmentType" : "Weapon Accessory",
+        "Type" : "BaseDamage",
+        "EquipmentType" : "Weapon",
         "Lower" : "1",
         "Upper" : "4"
     },
@@ -18,7 +18,7 @@
     {
         "Name" : "Protection",
         "Rarity" : "Normal",
-        "Type" : "Defense",
+        "Type" : "DefenseBonus",
         "EquipmentType" : "Armor Accessory",
         "Lower" : "1",
         "Upper" : "3"
@@ -26,7 +26,7 @@
     {
         "Name" : "Defense",
         "Rarity" : "Magical",
-        "Type" : "Defense",
+        "Type" : "DefenseBonus",
         "EquipmentType" : "Armor Accessory",
         "Lower" : "3",
         "Upper" : "6"
@@ -34,7 +34,7 @@
     {
         "Name" : "Stoutness",
         "Rarity" : "Rare",
-        "Type" : "Defense",
+        "Type" : "DefenseBonus",
         "EquipmentType" : "Armor Accessory",
         "Lower" : "6",
         "Upper" : "8"
@@ -42,7 +42,7 @@
     {
         "Name" : "Stoicness",
         "Rarity" : "Legendary",
-        "Type" : "Defense",
+        "Type" : "DefenseBonus",
         "EquipmentType" : "Armor Accessory",
         "Lower" : "8",
         "Upper" : "12"
@@ -58,28 +58,28 @@
     {
         "Name" : "Plenty",
         "Rarity" : "Normal",
-        "Type" : "ShotSpeed",
+        "Type" : "Shots",
         "EquipmentType" : "Weapon Accessory",
         "Bonus" : "1"
     },
     {
         "Name" : "Bountiful",
         "Rarity" : "Magical",
-        "Type" : "ShotSpeed",
+        "Type" : "Shots",
         "EquipmentType" : "Weapon Accessory",
         "Bonus" : "2"
     },
     {
         "Name" : "Splendor",
         "Rarity" : "Rare",
-        "Type" : "ShotSpeed",
+        "Type" : "Shots",
         "EquipmentType" : "Weapon Accessory",
         "Bonus" : "3"
     },
     {
         "Name" : "Bullet Storm",
         "Rarity" : "Magical",
-        "Type" : "ShotSpeed",
+        "Type" : "Shots",
         "EquipmentType" : "Weapon Accessory",
         "Bonus" : "4"
     },
@@ -258,6 +258,35 @@
         "Type" : "PoisonDamage",
         "Lower" : "7",
         "Upper" : "10"
+    },
+    {
+        "Name" : "Acid",
+        "Rarity" : "Legendary",
+        "EquipmentType" : "Weapon",
+        "Type" : "AcidDamage",
+        "Lower" : "7",
+        "Upper" : "10"
+    },
+    {
+        "Name" : "Hopping",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Armor Accessory",
+        "Type" : "JumpNumber",
+        "Bonus": "1"
+    },
+    {
+        "Name" : "Leaping",
+        "Rarity" : "Rare",
+        "EquipmentType" : "Armor Accessory",
+        "Type" : "JumpNumber",
+        "Bonus": "2"
+    },
+    {
+        "Name" : "Bounding",
+        "Rarity" : "Magical",
+        "EquipmentType" : "Armor Accessory",
+        "Type" : "JumpNumber",
+        "Bonus": "3"
     }
 ]}
 

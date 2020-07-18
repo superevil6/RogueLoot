@@ -21,6 +21,8 @@ public class Attack : ScriptableObject
     public int FireDamage;
     public int ElectricDamage;
     public int PoisonDamage;
+    public int AcidDamage;
+
     // Start is called before the first frame update
     void Start()
     {

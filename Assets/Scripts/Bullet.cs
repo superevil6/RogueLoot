@@ -23,7 +23,6 @@ public class Bullet : MonoBehaviour
         SpriteRenderer.sprite = Attack.Sprite;
         Animator.runtimeAnimatorController = Attack.RAC;
         float angle = Mathf.Atan2(Direction.x, Direction.y) * Mathf.Rad2Deg;
-        //float rotation = angle + Camera.main.transform.eulerAngles.y;
         transform.eulerAngles = new Vector3(0, 0, -angle);
         if(actor != null){
             TotalDamage = Mathf.RoundToInt(Attack.BaseDamage * actor.Power);    

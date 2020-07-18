@@ -14,11 +14,13 @@ public class Accessory : Item
     public int DefenseBonus;
     public float Speed;   
     public float AccuracyBonus;
-    public Accessory(string name, EquipmentType equipmentType, Rarity rarity, int value, int upgradeSlots){
+    public int JumpNumber;
+    public Accessory(string name, EquipmentType equipmentType, Rarity rarity, int value, int upgradeSlots, int jumpNumber){
         Name = name;
         EquipmentType = equipmentType;
         Rarity = rarity;
         Value = value;
+        JumpNumber = jumpNumber;
         UpgradeSlots = upgradeSlots;
         Upgrades = new List<Item>();
         Effects = new List<Effect>();
