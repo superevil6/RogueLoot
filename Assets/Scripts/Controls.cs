@@ -8,7 +8,7 @@ public class Controls : MonoBehaviour
     public Rigidbody2D RB;
     public GameObject MenuPanel;
     private float TimeBetweenAttacks;
-    private bool MenuOpen;
+    public bool MenuOpen;
     private int JumpsRemaining;
     private float MovementInput;
     private bool Grounded;
@@ -39,7 +39,7 @@ public class Controls : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!MenuOpen && !IsWallJumping){
+        if(!IsWallJumping){
             MovementInput = Input.GetAxisRaw("HorizontalLeft");
             RB.velocity = new Vector2(MovementInput * Player.Speed, RB.velocity.y);
             // RB.velocity = new Vector2(
@@ -90,12 +90,17 @@ public class Controls : MonoBehaviour
             JumpsRemaining = Player.JumpNumber;
         }
 
-        // if(Input.GetButtonDown("Menu")){
-        //     MenuOpen = !MenuOpen;
-        //     RB.velocity = new Vector2(0, 0); //So the player doesn't keep moving when the menu is open.
-        //     MenuPanel.SetActive(!MenuPanel.activeInHierarchy);
-        //     MenuPanel.transform.position = Player.transform.position;
-        // }
+        if((Input.GetAxis("Menu Horizontal") > 0
+        || Input.GetAxis("Menu Horizontal") < 0
+        || Input.GetAxis("Menu Vertical") > 0
+        || Input.GetAxis("Menu Vertical") < 0)
+        && !MenuOpen
+        ){
+            MenuOpen = true;
+            // RB.velocity = new Vector2(0, 0); //So the player doesn't keep moving when the menu is open.
+            MenuPanel.SetActive(!MenuPanel.activeInHierarchy);
+            // MenuPanel.transform.position = new Vector2(Player.transform.position.x, Player.transform.position.y + 1) ;
+        }
         if(Input.GetButtonDown("L button") && !OnWallLeft && !OnWallRight && !IsJumping){
             if(JumpsRemaining > 0 || Grounded){
                 IsJumping = true;
@@ -142,23 +147,23 @@ public class Controls : MonoBehaviour
             }
         }
 
-        if(Input.GetButtonDown("Weapon Swap Left")){
-            if(Player.CurrentWeapon > 0){
-                Player.CurrentWeapon -= 1;
-            }
-            else{
-                Player.CurrentWeapon = Player.Weapons.Count -1;
-            }
+        // if(Input.GetButtonDown("Weapon Swap Left")){
+        //     if(Player.CurrentWeapon > 0){
+        //         Player.CurrentWeapon -= 1;
+        //     }
+        //     else{
+        //         Player.CurrentWeapon = Player.Weapons.Count -1;
+        //     }
 
-        }
-        if(Input.GetButtonDown("Weapon Swap Right")){
-            if(Player.CurrentWeapon < Player.Weapons.Count - 1){
-                Player.CurrentWeapon += 1;
-            }
-            else{
-                Player.CurrentWeapon = 0;
-            }
-        }
+        // }
+        // if(Input.GetButtonDown("Weapon Swap Right")){
+        //     if(Player.CurrentWeapon < Player.Weapons.Count - 1){
+        //         Player.CurrentWeapon += 1;
+        //     }
+        //     else{
+        //         Player.CurrentWeapon = 0;
+        //     }
+        // }
 
         if(DashTime > 0){
             DashTime -= Time.deltaTime;

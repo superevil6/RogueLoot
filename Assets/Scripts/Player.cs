@@ -8,10 +8,11 @@ public class Player : Actor
 {
     public Weapon Weapon;
     public int CurrentWeapon = 0;
+    public int CurrentArmor = 0;
+    public int CurrentAccessory = 0;
     public List<Weapon> Weapons = new List<Weapon>();
-    public Armor Armor;
-    public Accessory Accessory;
-    //public List<Accessory> Accessories = new List<Accessory>();
+    public List<Armor> Armors = new List<Armor>();
+    public List<Accessory> Accessories = new List<Accessory>();
     public List<Item> Inventory = new List<Item>();
     public Sprite Sprite;
     public int Luck;
@@ -35,7 +36,7 @@ public class Player : Actor
     {
         EquippedWeapon.text = Weapons[CurrentWeapon].Name;
         MoneyText.text = Money.ToString();
-        EquippedArmor.text = Armor.Name;
+        EquippedArmor.text = Armors[CurrentArmor].Name;
         if(Weapons[CurrentWeapon].Upgrades.Count >= 1){
             ModuleText.text = Weapons[CurrentWeapon].Upgrades[0].Name;
         }
@@ -56,18 +57,18 @@ public class Player : Actor
                 
             break;
             case EquipmentType.Armor:
-            TotalHealth += Armor.HealthBonus;
-            Defense += Armor.DefenseBonus;
-            TotalShield += Armor.ShieldBonus;
-            Speed += Armor.Speed;
-            JumpNumber += Armor.JumpNumber;
+            TotalHealth += Armors[CurrentArmor].HealthBonus;
+            Defense += Armors[CurrentArmor].DefenseBonus;
+            TotalShield += Armors[CurrentArmor].ShieldBonus;
+            Speed += Armors[CurrentArmor].Speed;
+            JumpNumber += Armors[CurrentArmor].JumpNumber;
             break;
             case EquipmentType.Accessory:
-            TotalHealth += Accessory.HealthBonus;
-            Defense += Accessory.DefenseBonus;
-            TotalShield += Accessory.ShieldBonus;
-            Speed += Accessory.Speed;
-            JumpNumber += Accessory.JumpNumber;
+            TotalHealth += Accessories[CurrentAccessory].HealthBonus;
+            Defense += Accessories[CurrentAccessory].DefenseBonus;
+            TotalShield += Accessories[CurrentAccessory].ShieldBonus;
+            Speed += Accessories[CurrentAccessory].Speed;
+            JumpNumber += Accessories[CurrentAccessory].JumpNumber;
             // Weapon.Attack.BaseDamage += Accessory.BaseDamage;
             // Weapon.Attack.Shots += Accessory.Shots;
             // Weapon.Attack.Size += Accessory.Size;
@@ -82,17 +83,17 @@ public class Player : Actor
 
             break;
             case EquipmentType.Armor:
-            TotalHealth -= Armor.HealthBonus;
-            Defense -= Armor.DefenseBonus;
-            TotalShield -= Armor.ShieldBonus;
-            Speed -= Armor.Speed;
+            TotalHealth -= Armors[CurrentArmor].HealthBonus;
+            Defense -= Armors[CurrentArmor].DefenseBonus;
+            TotalShield -= Armors[CurrentArmor].ShieldBonus;
+            Speed -= Armors[CurrentArmor].Speed;
             break;
             case EquipmentType.Accessory:
-            TotalHealth -= Accessory.HealthBonus;
-            Defense -= Accessory.DefenseBonus;
-            TotalShield -= Accessory.ShieldBonus;
-            Speed -= Accessory.Speed;
-            JumpNumber -= Accessory.JumpNumber;
+            TotalHealth -= Accessories[CurrentAccessory].HealthBonus;
+            Defense -= Accessories[CurrentAccessory].DefenseBonus;
+            TotalShield -= Accessories[CurrentAccessory].ShieldBonus;
+            Speed -= Accessories[CurrentAccessory].Speed;
+            JumpNumber -= Accessories[CurrentAccessory].JumpNumber;
             // Weapon.Attack.BaseDamage -= Accessory.BaseDamage;
             // Weapon.Attack.Shots -= Accessory.Shots;
             // Weapon.Attack.Size -= Accessory.Size;

@@ -15,13 +15,17 @@ public class EquipmentGeneration : MonoBehaviour
         Player.Weapons.Add(GenerateWeapon());
         Player.Weapons.Add(GenerateWeapon());
         Player.Weapons.Add(GenerateWeapon());
-        Player.Weapons.Add(GenerateWeapon());
-
-        Armor anArmor = GenerateArmor();
-        Player.Armor = anArmor;
-        Accessory acc = GenerateAccessory();
-        Player.Accessory = acc;
-        Upgrade upg = GenerateUpgrade();
+        Player.Armors.Add(GenerateArmor());
+        Player.Armors.Add(GenerateArmor());
+        Player.Armors.Add(GenerateArmor());
+        Player.Accessories.Add(GenerateAccessory());
+        Player.Accessories.Add(GenerateAccessory());
+        Player.Accessories.Add(GenerateAccessory());
+        // Armor anArmor = GenerateArmor();
+        // Player.Armor = anArmor;
+        // Accessory acc = GenerateAccessory();
+        // Player.Accessory = acc;
+        // Upgrade upg = GenerateUpgrade();
         Player.AddStatsFromEquipment(EquipmentType.Weapon);
         Player.AddStatsFromEquipment(EquipmentType.Armor);
         Player.AddStatsFromEquipment(EquipmentType.Accessory);       

@@ -55,17 +55,17 @@ public class Pickup : MonoBehaviour
                     }
                     if(PickupType == PickupType.Armor){
                         player.RemoveStatsFromEquipment(EquipmentType.Armor);
-                        player.Armor = (Armor)Item;
+                        player.Armors[0] = (Armor)Item;
                         player.AddStatsFromEquipment(EquipmentType.Armor);
                     }
                     if(PickupType == PickupType.Accessory){
                         player.RemoveStatsFromEquipment(EquipmentType.Accessory);
-                        player.Accessory = (Accessory)Item;
+                        player.Accessories[0] = (Accessory)Item;
                         player.AddStatsFromEquipment(EquipmentType.Accessory);
                     }
                     if(PickupType == PickupType.Upgrade){
                         if(Item.UpgradeType == EquipmentType.Armor){
-                            player.Armor.Upgrades.Add(Item);
+                            player.Armors[player.CurrentArmor].Upgrades.Add(Item);
                         }
                         if(Item.UpgradeType == EquipmentType.Weapon){
                             player.Weapons[player.CurrentWeapon].Upgrades.Add(Item);

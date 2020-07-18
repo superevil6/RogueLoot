@@ -30,10 +30,10 @@ public class ItemPanel : MenuPanel//, ISelectHandler, IDeselectHandler
             Player.Weapons[Player.CurrentWeapon] = Player.Inventory[Index] as Weapon;
             break;
             case EquipmentType.Armor:
-            Player.Armor = Player.Inventory[Index] as Armor;
+            Player.Armors[Player.CurrentArmor] = Player.Inventory[Index] as Armor;
             break;
             case EquipmentType.Accessory:
-            Player.Accessory = Player.Inventory[Index] as Accessory;
+            Player.Accessories[Player.CurrentAccessory] = Player.Inventory[Index] as Accessory;
             break;
             default:
             break;
