@@ -22,6 +22,9 @@ public class Enemy : Actor
             Destination = DetermineMovement(EBehavior.MovementStyle, EBehavior.AttackStyle, Player);
             transform.localPosition = Vector2.Lerp(transform.localPosition, Destination, Time.deltaTime * Speed);
             if(CurrentCooldown <= 0){
+                if(Player.transform.position.y > Destination.y){
+                    Jump();
+                }
                 DetermineAction();
                 CurrentCooldown = EBehavior.ActionCooldown;
                 //Do action
@@ -50,7 +53,13 @@ public class Enemy : Actor
             if(bullet.Attack.AcidDamage >= 0){
                 EffectStats.AcidBuildup += bullet.Attack.AcidDamage;
             }
-            other.transform.gameObject.SetActive(false);
+            if(bullet.ExplosionRadius > 0){
+                bullet.Explode();
+            }
+            else{
+                bullet.StartCoroutine("Hit");
+            }
+            // other.transform.gameObject.SetActive(false);
         }
     }
 
@@ -130,9 +139,7 @@ public class Enemy : Actor
                 bullet.Direction = 
                 new Vector2((player.transform.position.x) + RollAccuracy(attack.Accuracy), (player.transform.position.y) + RollAccuracy(attack.Accuracy));
                 bullet.Attack = attack;
-                bullet.StartPosition = 
-                new Vector2(transform.position.x / 2.5f + transform.position.x, 
-                transform.position.y / 2.5f + transform.position.y);
+                bullet.StartPosition = transform.position;
                 go.SetActive(true);
                 bulletsToShoot -= 1;
             }
@@ -143,6 +150,6 @@ public class Enemy : Actor
     }
 
     private void Jump(){
-
+        RB.AddForce(Vector2.up * 50);
     }
 }

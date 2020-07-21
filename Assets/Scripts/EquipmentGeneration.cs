@@ -129,9 +129,9 @@ public class EquipmentGeneration : MonoBehaviour
         newUpgrade.Effects.Add(newEffect);
         //temporarily for testing
         newUpgrade.UpgradeType = EquipmentType.Weapon;
-        // newUpgrade.Description += newEffect.Description + " ";
-        AddStatFromEffectToUpgrade(newEffect, newUpgrade);
+        newUpgrade.Description += newEffect.Description + " ";
         newUpgrade.Name = newEffect.Name + " Module";
+        AddStatFromEffectToUpgrade(newEffect, newUpgrade);
         return newUpgrade;
     }
     #endregion

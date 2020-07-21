@@ -13,6 +13,9 @@ public class Player : Actor
     public List<Weapon> Weapons = new List<Weapon>();
     public List<Armor> Armors = new List<Armor>();
     public List<Accessory> Accessories = new List<Accessory>();
+    public List<Upgrade> WeaponUpgrades = new List<Upgrade>();
+    public List<Upgrade> ArmorUpgrades = new List<Upgrade>();
+    public List<Upgrade> AccessoryUpgrades = new List<Upgrade>();
     public List<Item> Inventory = new List<Item>();
     public Sprite Sprite;
     public int Luck;
@@ -44,8 +47,10 @@ public class Player : Actor
     }
     void OnTriggerEnter2D(Collider2D other){
         if(other.tag == "EnemyBullet"){
-            CurrentHealth -= Mathf.RoundToInt(other.transform.GetComponent<Bullet>().TotalDamage - Defense);
-            other.transform.gameObject.SetActive(false);
+            var bullet = other.transform.GetComponent<Bullet>();
+            CurrentHealth -= Mathf.RoundToInt(bullet.TotalDamage - Defense);
+            bullet.StartCoroutine("Hit");
+            // other.transform.gameObject.SetActive(false);
         }
         if(other.tag == "Enemy"){
             CurrentHealth -= Mathf.RoundToInt(other.transform.GetComponent<Actor>().Power - Defense);
@@ -54,7 +59,20 @@ public class Player : Actor
     public void AddStatsFromEquipment(EquipmentType et){
         switch(et){
             case EquipmentType.Weapon:
-                
+                //Weapons aren't a modification of the characters stats, but a modification of their attack's stats.
+                foreach(Upgrade upgrade in Weapons[CurrentWeapon].Upgrades){
+                    Weapons[CurrentWeapon].Attack.BaseDamage += upgrade.BaseDamage;
+                    Weapons[CurrentWeapon].Attack.Shots += upgrade.Shots;
+                    Weapons[CurrentWeapon].Attack.Size += upgrade.Size;
+                    // Weapons[CurrentWeapon].Attack.Accuracy += upgrade.Accuracy;
+                    Weapons[CurrentWeapon].Attack.AttackSpeed += upgrade.AttackSpeed;
+                    // Weapons[CurrentWeapon].Attack.Distance += upgrade.Distance;
+                    // Weapons[CurrentWeapon].Attack.ColdDamage += upgrade.ColdDamage;
+                    // Weapons[CurrentWeapon].Attack.FireDamage += upgrade.FireDamage;
+                    // Weapons[CurrentWeapon].Attack.ElectricDamage += upgrade.ElectricDamage;
+                    // Weapons[CurrentWeapon].Attack.PoisonDamage += upgrade.PoisonDamage;
+                    // Weapons[CurrentWeapon].Attack.AcidDamage += upgrade.AcidDamage;
+                }
             break;
             case EquipmentType.Armor:
             TotalHealth += Armors[CurrentArmor].HealthBonus;
@@ -62,6 +80,13 @@ public class Player : Actor
             TotalShield += Armors[CurrentArmor].ShieldBonus;
             Speed += Armors[CurrentArmor].Speed;
             JumpNumber += Armors[CurrentArmor].JumpNumber;
+            foreach(Upgrade upgrade in Armors[CurrentArmor].Upgrades){
+                TotalHealth += upgrade.HealthBonus;
+                Defense += upgrade.DefenseBonus;
+                TotalShield += upgrade.ShieldBonus;
+                Speed += upgrade.Speed;
+                // JumpNumber += upgrade.JumpNumber;
+            }
             break;
             case EquipmentType.Accessory:
             TotalHealth += Accessories[CurrentAccessory].HealthBonus;
@@ -69,6 +94,13 @@ public class Player : Actor
             TotalShield += Accessories[CurrentAccessory].ShieldBonus;
             Speed += Accessories[CurrentAccessory].Speed;
             JumpNumber += Accessories[CurrentAccessory].JumpNumber;
+            foreach(Upgrade upgrade in Accessories[CurrentAccessory].Upgrades){
+                TotalHealth += upgrade.HealthBonus;
+                Defense += upgrade.DefenseBonus;
+                TotalShield += upgrade.ShieldBonus;
+                Speed += upgrade.Speed;
+                // JumpNumber += upgrade.JumpNumber;
+            }
             // Weapon.Attack.BaseDamage += Accessory.BaseDamage;
             // Weapon.Attack.Shots += Accessory.Shots;
             // Weapon.Attack.Size += Accessory.Size;
@@ -80,13 +112,33 @@ public class Player : Actor
     public void RemoveStatsFromEquipment(EquipmentType et){
         switch(et){
             case EquipmentType.Weapon:
-
+            foreach(Upgrade upgrade in Weapons[CurrentWeapon].Upgrades){
+                Weapons[CurrentWeapon].Attack.BaseDamage -= upgrade.BaseDamage;
+                Weapons[CurrentWeapon].Attack.Shots -= upgrade.Shots;
+                Weapons[CurrentWeapon].Attack.Size -= upgrade.Size;
+                // Weapons[CurrentWeapon].Attack.Accuracy += upgrade.Accuracy;
+                Weapons[CurrentWeapon].Attack.AttackSpeed -= upgrade.AttackSpeed;
+                // Weapons[CurrentWeapon].Attack.Distance += upgrade.Distance;
+                // Weapons[CurrentWeapon].Attack.ColdDamage += upgrade.ColdDamage;
+                // Weapons[CurrentWeapon].Attack.FireDamage += upgrade.FireDamage;
+                // Weapons[CurrentWeapon].Attack.ElectricDamage += upgrade.ElectricDamage;
+                // Weapons[CurrentWeapon].Attack.PoisonDamage += upgrade.PoisonDamage;
+                // Weapons[CurrentWeapon].Attack.AcidDamage += upgrade.AcidDamage;
+            }
             break;
             case EquipmentType.Armor:
             TotalHealth -= Armors[CurrentArmor].HealthBonus;
             Defense -= Armors[CurrentArmor].DefenseBonus;
             TotalShield -= Armors[CurrentArmor].ShieldBonus;
             Speed -= Armors[CurrentArmor].Speed;
+            JumpNumber -= Armors[CurrentArmor].JumpNumber;
+            foreach(Upgrade upgrade in Armors[CurrentArmor].Upgrades){
+                TotalHealth -= upgrade.HealthBonus;
+                Defense -= upgrade.DefenseBonus;
+                TotalShield -= upgrade.ShieldBonus;
+                Speed -= upgrade.Speed;
+                // JumpNumber += upgrade.JumpNumber;
+            }
             break;
             case EquipmentType.Accessory:
             TotalHealth -= Accessories[CurrentAccessory].HealthBonus;
@@ -94,6 +146,13 @@ public class Player : Actor
             TotalShield -= Accessories[CurrentAccessory].ShieldBonus;
             Speed -= Accessories[CurrentAccessory].Speed;
             JumpNumber -= Accessories[CurrentAccessory].JumpNumber;
+            foreach(Upgrade upgrade in Accessories[CurrentAccessory].Upgrades){
+                TotalHealth -= upgrade.HealthBonus;
+                Defense -= upgrade.DefenseBonus;
+                TotalShield -= upgrade.ShieldBonus;
+                Speed -= upgrade.Speed;
+                // JumpNumber += upgrade.JumpNumber;
+            }
             // Weapon.Attack.BaseDamage -= Accessory.BaseDamage;
             // Weapon.Attack.Shots -= Accessory.Shots;
             // Weapon.Attack.Size -= Accessory.Size;

@@ -17,23 +17,15 @@ public class Pickup : MonoBehaviour
     void Start()
     {
         EG = GetComponentInParent<EquipmentGeneration>();
-        PickupType = SelectPickupType();
-        if(PickupType == PickupType.Upgrade || 
-        PickupType == PickupType.Weapon ||
-        PickupType == PickupType.Armor ||
-        PickupType == PickupType.Accessory){
-            Item = GenerateItem(PickupType);
-            SR.color = GetRarityColor(Item.Rarity);
+        BC = GetComponentInParent<BoxCollider2D>();
+        RB = GetComponentInParent<Rigidbody2D>();
+        EG = GetComponentInParent<EquipmentGeneration>();
+        if(Item == null){
+            GeneratePickup();
         }
-        if(PickupType == PickupType.Money){
-            SR.color = Color.green;
-            //Generate Money
+        else{
+            GeneratePickup(Item);
         }
-        if(PickupType == PickupType.Health){
-            SR.color = Color.red;
-            //Generate Health
-        }
-        
     }
 
     // Update is called once per frame
@@ -64,11 +56,14 @@ public class Pickup : MonoBehaviour
                         player.AddStatsFromEquipment(EquipmentType.Accessory);
                     }
                     if(PickupType == PickupType.Upgrade){
-                        if(Item.UpgradeType == EquipmentType.Armor){
-                            player.Armors[player.CurrentArmor].Upgrades.Add(Item);
-                        }
                         if(Item.UpgradeType == EquipmentType.Weapon){
-                            player.Weapons[player.CurrentWeapon].Upgrades.Add(Item);
+                            player.WeaponUpgrades.Add((Upgrade)Item);
+                        }
+                        if(Item.UpgradeType == EquipmentType.Armor){
+                            player.ArmorUpgrades.Add((Upgrade)Item);
+                        }
+                        if(Item.UpgradeType == EquipmentType.Accessory){
+                            player.AccessoryUpgrades.Add((Upgrade)Item);
                         }
                     }
                     gameObject.SetActive(false);
@@ -94,8 +89,9 @@ public class Pickup : MonoBehaviour
     void OnTriggerExit2D(Collider2D other) {
         ItemPanel.SetActive(false);
     }
+
     public PickupType SelectPickupType(){
-        int typeRNG = 3; //Random.Range(0, 100);
+        int typeRNG = 11; //Random.Range(0, 100);
         if(typeRNG <= 10){
             typeRNG = 1;//Random.Range(1, 4);
             switch(typeRNG){
@@ -149,5 +145,39 @@ public class Pickup : MonoBehaviour
             default:
             return Color.gray;
         }
+    }
+    
+    public void GeneratePickup(){
+        PickupType = SelectPickupType();
+        if(PickupType == PickupType.Upgrade || 
+        PickupType == PickupType.Weapon ||
+        PickupType == PickupType.Armor ||
+        PickupType == PickupType.Accessory){
+            Item = GenerateItem(PickupType);
+            SR.color = GetRarityColor(Item.Rarity);
+        }
+        if(PickupType == PickupType.Money){
+            SR.color = Color.green;
+            //Generate Money
+        }
+        if(PickupType == PickupType.Health){
+            SR.color = Color.red;
+            //Generate Health
+        }
+    }
+    public void GeneratePickup(Item item){
+        if(Item.EquipmentType == EquipmentType.Weapon){
+            PickupType = PickupType.Weapon;
+        }
+        if(Item.EquipmentType == EquipmentType.Armor){
+            PickupType = PickupType.Armor;
+        }
+        if(Item.EquipmentType == EquipmentType.Accessory){
+            PickupType = PickupType.Accessory;
+        }
+        if(Item.EquipmentType == EquipmentType.Upgrade){
+            PickupType = PickupType.Upgrade;
+        }
+        SR.color = GetRarityColor(Item.Rarity);
     }
 }

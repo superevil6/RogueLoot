@@ -17,11 +17,31 @@ public class Bullet : MonoBehaviour
     private float startTime;
     private float journeyLength;
     public int TotalDamage;
+    public float ExplosionRadius;
+    public float ExplosionTime;
+    public int SplitCount;
+    public bool Ricochet;
+    public int PierceCount;
+    public GameObject ExplosionPrefab;
+    private GameObject Explosion;
 
+    void Awake(){
+        Explosion = Instantiate(ExplosionPrefab);
+        var explosion = Explosion.GetComponent<Explosion>();
+        explosion.Radius = new Vector2(ExplosionRadius, ExplosionRadius);
+        explosion.LifeTime = ExplosionTime;
+    }
     void OnEnable() {
         var actor = gameObject.GetComponentInParent<Actor>();
+        // Explosion.SetActive(false);
+        BC.enabled = true;
         SpriteRenderer.sprite = Attack.Sprite;
         Animator.runtimeAnimatorController = Attack.RAC;
+        if(ExplosionRadius > 0){
+            var explosion = Explosion.GetComponent<Explosion>();
+            explosion.Radius = new Vector2(ExplosionRadius, ExplosionRadius);
+            explosion.Damage = TotalDamage / 2;
+        }
         float angle = Mathf.Atan2(Direction.x, Direction.y) * Mathf.Rad2Deg;
         transform.eulerAngles = new Vector3(0, 0, -angle);
         if(actor != null){
@@ -47,6 +67,36 @@ public class Bullet : MonoBehaviour
         if(transform.position == Direction){
             gameObject.SetActive(false);
         }
+    }
+
+    void OnTriggerExit2D(Collider2D other) {
+        if(other.tag == "Wall"){
+            StopAllCoroutines();
+            if(ExplosionRadius > 0){
+                Explode();
+            }
+            else{
+                gameObject.SetActive(false);    
+            }
+        }
+    }
+    public void Explode(){
+        Explosion.transform.position = gameObject.transform.position;
+        Explosion.SetActive(true);
+        gameObject.SetActive(false);
+    }
+    public IEnumerator Hit(){
+        //Play the animation and wait for the end of the animation.
+        if(PierceCount > 0){
+            PierceCount -= 1;
+        }
+        //If exploding, spawn explosion.
+        else{
+            BC.enabled = false;
+            transform.position = Direction;
+            yield return new WaitForSeconds(1);
+        }
+        gameObject.SetActive(false);
     }
 }
  

@@ -19,7 +19,7 @@
         "Name" : "Protection",
         "Rarity" : "Normal",
         "Type" : "DefenseBonus",
-        "EquipmentType" : "Armor Accessory",
+        "EquipmentType" : "Armor Accessory Upgrade",
         "Lower" : "1",
         "Upper" : "3"
     },
@@ -287,6 +287,38 @@
         "EquipmentType" : "Armor Accessory",
         "Type" : "JumpNumber",
         "Bonus": "3"
+    },
+    {
+        "Name" : "Length",
+        "Rarity" : "Normal",
+        "EquipmentType" : "Weapon",
+        "Type" : "Distance",
+        "Lower" : "1",
+        "Upper" : "3"
+    },
+    {
+        "Name" : "Travel",
+        "Rarity" : "Magical",
+        "EquipmentType" : "Weapon",
+        "Type" : "Distance",
+        "Lower" : "3",
+        "Upper" : "5"
+    },
+    {
+        "Name" : "Journey",
+        "Rarity" : "Rare",
+        "EquipmentType" : "Weapon",
+        "Type" : "Distance",
+        "Lower" : "5",
+        "Upper" : "7"
+    },
+    {
+        "Name" : "Exodus",
+        "Rarity" : "Legendary",
+        "EquipmentType" : "Weapon",
+        "Type" : "Distance",
+        "Lower" : "7",
+        "Upper" : "10"
     }
 ]}
 

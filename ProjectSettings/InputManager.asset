@@ -14,7 +14,7 @@ InputManager:
     altNegativeButton: a
     altPositiveButton: d
     gravity: 3
-    dead: 0.001
+    dead: 0.1
     sensitivity: 1
     snap: 0
     invert: 0
@@ -118,7 +118,7 @@ InputManager:
     axis: 0
     joyNum: 3
   - serializedVersion: 3
-    m_Name: Menu
+    m_Name: Drop
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 

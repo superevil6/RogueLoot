@@ -42,12 +42,6 @@ public class Controls : MonoBehaviour
         if(!IsWallJumping){
             MovementInput = Input.GetAxisRaw("HorizontalLeft");
             RB.velocity = new Vector2(MovementInput * Player.Speed, RB.velocity.y);
-            // RB.velocity = new Vector2(
-            //     Mathf.Lerp(0, Input.GetAxisRaw("HorizontalLeft") * Player.Speed, 0.8f), 
-            //     //Mathf.Lerp(0, Input.GetAxisRaw("VerticalLeft") * Player.Speed, 0.8f)
-            //     -2.8f
-            //     );
-
             if(TimeBetweenAttacks <= 0){
                 if((Input.GetAxisRaw("HorizontalRight") >= 0.5f || Input.GetAxisRaw("HorizontalRight") <= -0.5f)
                 || (Input.GetAxisRaw("VerticalRight") >= 0.5f || Input.GetAxisRaw("VerticalRight") <= -0.5f)){
