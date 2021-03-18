@@ -30,8 +30,7 @@ public class Player : Actor
 
     void Start()
     {
-        Bullets.InstantiateObjects(NumberOfPooledBullets);
-
+        Bullets.InstantiateBullets(NumberOfPooledBullets);
     }
 
     // Update is called once per frame

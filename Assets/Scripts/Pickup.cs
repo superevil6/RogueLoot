@@ -14,24 +14,19 @@ public class Pickup : MonoBehaviour
     public Item Item;
     public GameObject ItemPanel;
     // Start is called before the first frame update
-    void Start()
-    {
-        EG = GetComponentInParent<EquipmentGeneration>();
+    void Awake(){
+        EG = GameObject.FindGameObjectWithTag("Equipment Generator").GetComponent<EquipmentGeneration>();
         BC = GetComponentInParent<BoxCollider2D>();
         RB = GetComponentInParent<Rigidbody2D>();
-        EG = GetComponentInParent<EquipmentGeneration>();
+    }
+    void OnEnable()
+    {
         if(Item == null){
             GeneratePickup();
         }
         else{
             GeneratePickup(Item);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     void OnTriggerStay2D(Collider2D other){
         if(other.tag == "Player"){
@@ -40,6 +35,7 @@ public class Pickup : MonoBehaviour
             PickupType == PickupType.Weapon ||
             PickupType == PickupType.Armor ||
             PickupType == PickupType.Accessory){
+                ItemPanel.GetComponent<QuickItemPanel>().Item = (Item)Item;
                 ItemPanel.SetActive(true);
                 if(Input.GetButtonDown("Confirm")){
                     if(PickupType == PickupType.Weapon){

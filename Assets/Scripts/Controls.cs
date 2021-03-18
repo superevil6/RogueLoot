@@ -59,9 +59,22 @@ public class Controls : MonoBehaviour
                                 + RollAccuracy(Player.Weapons[Player.CurrentWeapon].Attack.Accuracy) + transform.position.x, 
                                 (shotDirection.y * Player.Weapons[Player.CurrentWeapon].Attack.Distance) 
                                 + RollAccuracy(Player.Weapons[Player.CurrentWeapon].Attack.Accuracy) + transform.position.y);
+
                             bullet.Attack = Player.Weapons[Player.CurrentWeapon].Attack;
-                            bullet.StartPosition = new Vector2(shotDirection.x / 2.5f  
-                            + transform.position.x, shotDirection.y / 2.5f + transform.position.y);
+                            float playerOffsetX = 0;
+                            float playerOffsetY = 0;
+                            if(shotDirection.x > 0){
+                                playerOffsetX = 0.15f;
+                            }
+                            else if(shotDirection.x < 0){
+                                playerOffsetX = -0.15f;
+                            }
+                            if(shotDirection.y > 0){
+                                playerOffsetY = 0.15f;
+                            }
+                            bullet.StartPosition = new Vector2(
+                            shotDirection.x / 2.5f + transform.position.x + playerOffsetX, 
+                            shotDirection.y / 2.5f + transform.position.y + playerOffsetY);
                             go.SetActive(true);
                             bulletsToShoot -= 1;
                         }

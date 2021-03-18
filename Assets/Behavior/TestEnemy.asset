@@ -21,5 +21,5 @@ MonoBehaviour:
   AttackStyle: 1
   MovementStyle: 0
   ActionCooldown: 2
-  DropsItems: 0
+  DropsItems: 1
   AgroDistance: 700

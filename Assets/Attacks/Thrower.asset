@@ -15,10 +15,26 @@ MonoBehaviour:
   AttackName: Thrower
   Sprite: {fileID: 8048705776653754338, guid: cfe2dc95de3372d49a5a1bd5cc23c4b6, type: 3}
   RAC: {fileID: 9100000, guid: 24fad9e279ff9cf40bc38336366d89b6, type: 2}
+  BounceMaterial: {fileID: 0}
+  RicochetMaterial: {fileID: 0}
   BaseDamage: 3
-  AttackSpeed: 0.1
-  Distance: 0.75
+  AttackSpeed: 0.125
+  Distance: 2
   ShotSpeed: 3
   Shots: 3
   Accuracy: 1
   Size: 1.15
+  Pierces: 0
+  ColdDamage: 0
+  FireDamage: 0
+  ElectricDamage: 0
+  PoisonDamage: 0
+  AcidDamage: 0
+  WaveDistance: 0
+  Ricochet: 0
+  LobbingForce: 0
+  WallPiercing: 0
+  EnemySeekingPull: 0
+  MineLifeTime: 0
+  SplitAmount: 0
+  SplitDistance: 0

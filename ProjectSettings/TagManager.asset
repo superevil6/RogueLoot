@@ -12,6 +12,9 @@ TagManager:
   - UpgradeSelectionPanel
   - MenuItem
   - Wall
+  - Explosion Pool
+  - Pickup Pool
+  - Equipment Generator
   layers:
   - Default
   - TransparentFX

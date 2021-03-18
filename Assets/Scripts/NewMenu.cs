@@ -471,25 +471,33 @@ public class NewMenu : MonoBehaviour
         }
     }
     private void DropItem(int subMenuIndex){
-        GameObject prefab = GameObject.Instantiate(PickUpPrefab);
+        GameObject prefab;
         switch(subMenuIndex){
             case 0:
-                Weapon weapon = Player.Weapons[WeaponIndex];
-                Pickup pickup = prefab.GetComponent<Pickup>();
-                QuickItemPanel panel = pickup.ItemPanel.GetComponent<QuickItemPanel>();
-                pickup.PickupType = PickupType.Weapon;
-                pickup.Item = (Item)weapon;
-                panel.Item = pickup.Item;
-                prefab.transform.localScale = new Vector2(1, 1);
-                prefab.transform.position = new Vector2(Player.transform.position.x + 1, Player.transform.position.y);
-                Player.Weapons.RemoveAt(WeaponIndex);
+                if(Player.Weapons.Count > 1){
+                    prefab = GameObject.Instantiate(PickUpPrefab);
+                    Weapon weapon = Player.Weapons[WeaponIndex];
+                    Pickup pickup = prefab.GetComponent<Pickup>();
+                    QuickItemPanel panel = pickup.ItemPanel.GetComponent<QuickItemPanel>();
+                    pickup.PickupType = PickupType.Weapon;
+                    pickup.Item = (Item)weapon;
+                    panel.Item = pickup.Item;
+                    pickup.transform.SetParent(Player.transform.parent);
+                    pickup.transform.localScale = new Vector2(128, 128);
+                    pickup.transform.position = new Vector2(Player.transform.position.x + 1, Player.transform.position.y);
+                    Player.Weapons.RemoveAt(WeaponIndex);
+                    WeaponIndex = 0;
+                    SetItemInfo(subMenuIndex);
+                }
             break;
             case 1:
+                prefab = GameObject.Instantiate(PickUpPrefab);
                 prefab.GetComponent<Pickup>().Item = (Armor)Player.Armors[ArmorIndex];
                 GameObject.Instantiate(prefab);
                 Player.Armors.RemoveAt(ArmorIndex);
             break;
             case 2:
+                prefab = GameObject.Instantiate(PickUpPrefab);
                 prefab.GetComponent<Pickup>().Item = (Accessory)Player.Accessories[AccessoryIndex];
                 GameObject.Instantiate(prefab);
                 Player.Accessories.RemoveAt(AccessoryIndex);

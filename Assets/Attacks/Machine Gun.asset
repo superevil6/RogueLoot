@@ -10,19 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d146d1101d030ee41812f3c5e39b79c6, type: 3}
-  m_Name: Shotgun
+  m_Name: Machine Gun
   m_EditorClassIdentifier: 
-  AttackName: Shotgun
-  Sprite: {fileID: 21300000, guid: fd6dfddb90108c84db2ea9cb84215458, type: 3}
+  AttackName: Machine Gun
+  Sprite: {fileID: 21300000, guid: 6b47c88aea6ec554da25ce3bb7b69415, type: 3}
   RAC: {fileID: 0}
-  BounceMaterial: {fileID: 0}
-  RicochetMaterial: {fileID: 0}
-  BaseDamage: 3
-  AttackSpeed: 0.3
-  Distance: 5
-  ShotSpeed: 5
-  Shots: 7
-  Accuracy: 0.4
+  BaseDamage: 4
+  AttackSpeed: 0.1
+  Distance: 8
+  ShotSpeed: 10
+  Shots: 1
+  Accuracy: 1.2
   Size: 0.5
   Pierces: 0
   ColdDamage: 0
@@ -30,11 +28,3 @@ MonoBehaviour:
   ElectricDamage: 0
   PoisonDamage: 0
   AcidDamage: 0
-  WaveDistance: 0
-  Ricochet: 0
-  LobbingForce: 0
-  WallPiercing: 0
-  EnemySeekingPull: 0
-  MineLifeTime: 0
-  SplitAmount: 0
-  SplitDistance: 0

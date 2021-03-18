@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 {
     public Attack Attack;
     public SpriteRenderer SpriteRenderer;
-    public BoxCollider2D BC;
+    public CircleCollider2D CC;
     public Rigidbody2D RB;
     public Vector3 Direction;
     public Vector2 StartPosition;
@@ -17,29 +17,42 @@ public class Bullet : MonoBehaviour
     private float startTime;
     private float journeyLength;
     public int TotalDamage;
-    public float ExplosionRadius;
-    public float ExplosionTime;
     public int SplitCount;
-    public bool Ricochet;
     public int PierceCount;
+    public ObjectPool ExplosionPool;
     public GameObject ExplosionPrefab;
     private GameObject Explosion;
 
     void Awake(){
-        Explosion = Instantiate(ExplosionPrefab);
-        var explosion = Explosion.GetComponent<Explosion>();
-        explosion.Radius = new Vector2(ExplosionRadius, ExplosionRadius);
-        explosion.LifeTime = ExplosionTime;
+        ExplosionPool = GameObject.FindGameObjectWithTag("Explosion Pool").GetComponent<ObjectPool>();
+        // Explosion = Instantiate(ExplosionPrefab);
+        // var explosion = Explosion.GetComponent<Explosion>();
+        // explosion.Radius = new Vector2(ExplosionRadius, ExplosionRadius);
+        // explosion.LifeTime = ExplosionTime;
     }
     void OnEnable() {
         var actor = gameObject.GetComponentInParent<Actor>();
+        foreach(GameObject go in ExplosionPool.PooledItems){
+            if(!go.activeInHierarchy){
+                Explosion = go;
+            } 
+        }
+        if(Attack.EnemySeekingPull > 0){
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        }
+        if(Attack.LobbingForce > 0){
+            CC.sharedMaterial = Attack.BounceMaterial;
+        }
+        if(Attack.Ricochet){
+            CC.sharedMaterial = Attack.RicochetMaterial;
+        }
         // Explosion.SetActive(false);
-        BC.enabled = true;
+        // CC.enabled = true;
         SpriteRenderer.sprite = Attack.Sprite;
         Animator.runtimeAnimatorController = Attack.RAC;
-        if(ExplosionRadius > 0){
+        if(Attack.ExplosionRadius > 0){
             var explosion = Explosion.GetComponent<Explosion>();
-            explosion.Radius = new Vector2(ExplosionRadius, ExplosionRadius);
+            explosion.Radius = new Vector2(Attack.ExplosionRadius, Attack.ExplosionRadius);
             explosion.Damage = TotalDamage / 2;
         }
         float angle = Mathf.Atan2(Direction.x, Direction.y) * Mathf.Rad2Deg;
@@ -51,14 +64,19 @@ public class Bullet : MonoBehaviour
         LifeTime = Attack.Distance;
         startTime = Time.time;
         journeyLength = Vector2.Distance(StartPosition, Direction);
+        if(Attack.LobbingForce > 0){
+            RB.AddForce(Direction * Attack.LobbingForce);
+        }
     }
     
     void Update()
     {
         if(LifeTime > 0){
-            float distanceCovered = (Time.time - startTime) * Attack.ShotSpeed;
-            float fracJourney = distanceCovered / journeyLength;
-            transform.position = Vector2.Lerp(StartPosition, Direction, fracJourney);
+            if(Attack.LobbingForce == 0){
+                float distanceCovered = (Time.time - startTime) * Attack.ShotSpeed;
+                float fracJourney = distanceCovered / journeyLength;
+                transform.position = Vector2.Lerp(StartPosition, Direction, fracJourney);
+            }
             LifeTime -= Time.deltaTime;
         }
         if(LifeTime <= 0){
@@ -70,9 +88,9 @@ public class Bullet : MonoBehaviour
     }
 
     void OnTriggerExit2D(Collider2D other) {
-        if(other.tag == "Wall"){
+        if(other.tag == "Wall" && !Attack.WallPiercing && Attack.LobbingForce == 0){
             StopAllCoroutines();
-            if(ExplosionRadius > 0){
+            if(Attack.ExplosionRadius > 0){
                 Explode();
             }
             else{
@@ -92,7 +110,7 @@ public class Bullet : MonoBehaviour
         }
         //If exploding, spawn explosion.
         else{
-            BC.enabled = false;
+            CC.enabled = false;
             transform.position = Direction;
             yield return new WaitForSeconds(1);
         }

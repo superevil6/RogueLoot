@@ -15,6 +15,8 @@ MonoBehaviour:
   AttackName: Laser
   Sprite: {fileID: 1600042174949997699, guid: c399dc919d45bfe4a82db9f839b642ef, type: 3}
   RAC: {fileID: 9100000, guid: 93d4f68f0de4d404c98605596371efad, type: 2}
+  BounceMaterial: {fileID: 6200000, guid: fb2786a4f10ff074990f02bacca1e200, type: 2}
+  RicochetMaterial: {fileID: 6200000, guid: ccc8c624fe25a58498b60301f0dfe518, type: 2}
   BaseDamage: 5
   AttackSpeed: 0.25
   Distance: 15
@@ -22,3 +24,17 @@ MonoBehaviour:
   Shots: 1
   Accuracy: 0.1
   Size: 0.5
+  Pierces: 0
+  ColdDamage: 0
+  FireDamage: 0
+  ElectricDamage: 0
+  PoisonDamage: 0
+  AcidDamage: 0
+  WaveDistance: 0
+  Ricochet: 1
+  LobbingForce: 0
+  WallPiercing: 0
+  EnemySeekingPull: 0
+  MineLifeTime: 0
+  SplitAmount: 0
+  SplitDistance: 0

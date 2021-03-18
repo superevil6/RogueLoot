@@ -248,7 +248,7 @@
         "Rarity" : "Rare",
         "EquipmentType" : "Weapon",
         "Type" : "PoisonDamage",
-        "Lower" : "5",
+        "Lower" :"5",
         "Upper" : "7"
     },
     {

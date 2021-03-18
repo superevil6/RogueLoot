@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d146d1101d030ee41812f3c5e39b79c6, type: 3}
-  m_Name: Shotgun
+  m_Name: Launcher
   m_EditorClassIdentifier: 
-  AttackName: Shotgun
-  Sprite: {fileID: 21300000, guid: fd6dfddb90108c84db2ea9cb84215458, type: 3}
+  AttackName: Launcher
+  Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   RAC: {fileID: 0}
   BounceMaterial: {fileID: 0}
   RicochetMaterial: {fileID: 0}
-  BaseDamage: 3
-  AttackSpeed: 0.3
-  Distance: 5
-  ShotSpeed: 5
-  Shots: 7
-  Accuracy: 0.4
-  Size: 0.5
+  BaseDamage: 30
+  AttackSpeed: 1
+  Distance: 3
+  ShotSpeed: 0
+  Shots: 1
+  Accuracy: 0.2
+  Size: 1
   Pierces: 0
   ColdDamage: 0
   FireDamage: 0
@@ -32,7 +32,7 @@ MonoBehaviour:
   AcidDamage: 0
   WaveDistance: 0
   Ricochet: 0
-  LobbingForce: 0
+  LobbingForce: 30
   WallPiercing: 0
   EnemySeekingPull: 0
   MineLifeTime: 0

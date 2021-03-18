@@ -12,7 +12,7 @@ public class Enemy : Actor
     private GameObject Player;
 
     void Start(){
-        Bullets.InstantiateObjects(NumberOfPooledBullets);
+        Bullets.InstantiateBullets(NumberOfPooledBullets);
         Player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -53,7 +53,7 @@ public class Enemy : Actor
             if(bullet.Attack.AcidDamage >= 0){
                 EffectStats.AcidBuildup += bullet.Attack.AcidDamage;
             }
-            if(bullet.ExplosionRadius > 0){
+            if(bullet.Attack.ExplosionRadius > 0){
                 bullet.Explode();
             }
             else{

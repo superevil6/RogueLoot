@@ -10,6 +10,8 @@ public class Attack : ScriptableObject
     public string AttackName;
     public Sprite Sprite;
     public RuntimeAnimatorController RAC;
+    public PhysicsMaterial2D BounceMaterial;
+    public PhysicsMaterial2D RicochetMaterial;
     public int BaseDamage;
     public float AttackSpeed;
     public float Distance;
@@ -23,4 +25,14 @@ public class Attack : ScriptableObject
     public int ElectricDamage;
     public int PoisonDamage;
     public int AcidDamage;
+    public float ExplosionRadius;
+    public float ExplosionTime;
+    public float WaveDistance;
+    public bool Ricochet;
+    public float LobbingForce;
+    public bool WallPiercing;
+    public float EnemySeekingPull;
+    public float MineLifeTime;
+    public int SplitAmount;
+    public float SplitDistance;
 }
