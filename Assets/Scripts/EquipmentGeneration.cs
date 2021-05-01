@@ -125,7 +125,7 @@ public class EquipmentGeneration : MonoBehaviour
         Rarity rarity = GenerateRarity(Player.Luck);
         Upgrade newUpgrade = new Upgrade("testUpgrade", EquipmentType.Upgrade, rarity, 100);
         Effect newEffect;
-        newEffect = EG.GenerateEffect(EquipmentType.Upgrade, newUpgrade.Rarity);
+        newEffect = EG.GenerateEffect(EquipmentType.Upgrade);
         newUpgrade.Effects.Add(newEffect);
         //temporarily for testing
         newUpgrade.UpgradeType = EquipmentType.Weapon;

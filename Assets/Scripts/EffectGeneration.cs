@@ -27,6 +27,7 @@ public class EffectGeneration : MonoBehaviour
         ArmorEffects = ReturnEquipmentSpecificEffects("Armor");
         AccessoryEffects = ReturnEquipmentSpecificEffects("Accessory");
         UpgradeEffects = ReturnEquipmentSpecificEffects("Upgrade");
+        print(UpgradeEffects.Count);
     }
 
     public Effects CreateFromJson(string jsonString){
@@ -58,6 +59,11 @@ public class EffectGeneration : MonoBehaviour
             case EquipmentType.Accessory:
             effectIndex = Random.Range(0, AccessoryEffects.Count);
             effect = CheckForEffect(AccessoryEffects[effectIndex]);
+            return effect;
+            case EquipmentType.Upgrade:
+            effectIndex = Random.Range(0, UpgradeEffects.Count);
+            print(effectIndex);
+            effect = CheckForEffect(UpgradeEffects[effectIndex]);
             return effect;
             default:
             return null;

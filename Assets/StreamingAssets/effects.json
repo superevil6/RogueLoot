@@ -27,7 +27,7 @@
         "Name" : "Defense",
         "Rarity" : "Magical",
         "Type" : "DefenseBonus",
-        "EquipmentType" : "Armor Accessory",
+        "EquipmentType" : "Armor Accessory Upgrade",
         "Lower" : "3",
         "Upper" : "6"
     },
